@@ -3,18 +3,18 @@ title: Start
 ---
 
 <div align="center">
-<h3>ViteLibStarter</h3>
+<h3>AvueBpmn</h3>
 <span>A template for building Vue components library</span> 
 <br>
-<a  href="https://soullyoko.github.io/vite-lib-starter/">Docs</a>
+<a  href="https://soullyoko.github.io/avue-bpmn/">Docs</a>
 </div>
 
 ## Install
 
 ```bash
-npm i vite-lib-starter
+npm i avue-bpmn
 # or
-yarn add vite-lib-starter
+yarn add avue-bpmn
 ```
 
 ## Usage
@@ -24,13 +24,13 @@ yarn add vite-lib-starter
 ```ts
 import { createApp } from "vue";
 import App from "./App.vue";
-import ViteLibStarter from "vite-lib-starter";
-import "vite-lib-starter/lib/style.css";
+import AvueBpmn from "avue-bpmn";
+import "avue-bpmn/lib/style.css";
 
 const app = createApp(App);
-app.use(ViteLibStarter);
+app.use(AvueBpmn);
 // global config
-// app.use(ViteLibStarter, { size: "small" });
+// app.use(AvueBpmn, { size: "small" });
 app.mount("#app");
 ```
 
@@ -42,8 +42,8 @@ app.mount("#app");
   <v-button>VButton</v-button>
 </template>
 <script setup>
-  import { VButton } from "vite-lib-starter";
-  import "vite-lib-starter/es/styles/button.css";
+  import { VButton } from "avue-bpmn";
+  import "avue-bpmn/es/styles/button.css";
 </script>
 ```
 
@@ -65,8 +65,8 @@ const LibResolver = componentName => {
     const partialName = kebabCase(componentName.slice(1));
     return {
       name: componentName,
-      from: "vite-lib-starter",
-      sideEffects: `vite-lib-starter/es/styles/${partialName}.css`
+      from: "avue-bpmn",
+      sideEffects: `avue-bpmn/es/styles/${partialName}.css`
     };
   }
 };
@@ -90,7 +90,7 @@ Add the global component type definition for `Volar`
 {
   "compilerOptions": {
     // ...
-    "types": ["vite-lib-starter/global"]
+    "types": ["avue-bpmn/global"]
   }
 }
 ```

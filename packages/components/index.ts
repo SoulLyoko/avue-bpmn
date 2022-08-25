@@ -1,9 +1,7 @@
-export * from "./button";
-export * from "./input";
+export * from "./bpmn-modeler";
 
-import { VButton, VInput } from ".";
+import { BpmnModeler } from ".";
 
 export default {
-  VButton,
-  VInput
+  BpmnModeler
 };

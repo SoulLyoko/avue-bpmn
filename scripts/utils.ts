@@ -20,6 +20,7 @@ export function switch2() {
   execSync("yarn add vue@legacy -D");
   execSync("yarn add vue-template-compiler@2.6.14 -D");
   execSync("yarn add @vue/test-utils@1.3.0 -D");
+  execSync("yarn add @smallwei/avue@latest -D");
   execSync("vue-demi-switch 2");
 }
 export function switch2_7() {
@@ -27,12 +28,14 @@ export function switch2_7() {
   execSync("yarn add vue@v2-latest -D");
   execSync("yarn add vue-template-compiler@latest -D");
   execSync("yarn add @vue/test-utils@1.3.0 -D");
+  execSync("yarn add @smallwei/avue@latest -D");
   execSync("vue-demi-switch 2.7");
 }
 
 export function switch3() {
   if (getVueVersion() === "3") return;
-  execSync("yarn add vue -D");
+  execSync("yarn add vue@latest -D");
   execSync("yarn add @vue/test-utils -D");
+  execSync("yarn add @smallwei/avue@next -D");
   execSync("vue-demi-switch 3");
 }

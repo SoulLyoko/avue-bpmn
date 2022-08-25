@@ -24,7 +24,7 @@ export default defineConfig({
   description: pkg.description,
   themeConfig: {
     docsDir: "packages",
-    repo: "SoulLyoko/vite-lib-starter",
+    repo: "SoulLyoko/avue-bpmn",
     nav: [
       { text: "Guide", link: Guide[0].link },
       { text: "Components", link: Components[0].children[0].link }

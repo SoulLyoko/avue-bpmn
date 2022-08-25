@@ -14,7 +14,17 @@ export default defineConfig(async ({ mode }) => {
     3: async () => (await import("@vitejs/plugin-vue")).default()
   };
   const vuePlugin = await vuePluginMap[getVueVersion()]();
-  const globals = { vue: "Vue", "vue-demi": "VueDemi" };
+  const globals = {
+    // vue: "Vue",
+    // "vue-demi": "VueDemi",
+    // "@vueuse/core": "VueUse",
+    // "lodash-es": "_",
+    // "lodash-unified": "_",
+    // lodash: "_",
+    // "bpmn-js": "BpmnJs",
+    // "diagram-js": "DiagramJs",
+    // "file-saver": "FileSaver"
+  };
   const external = Object.keys(globals);
   if (mode === "production") {
     fs.removeSync("dist");
@@ -35,7 +45,8 @@ export default defineConfig(async ({ mode }) => {
       environment: "jsdom"
     },
     optimizeDeps: {
-      exclude: external
+      // exclude: mode === "production" ? external : []
+      // exclude: ["vue-demi"]
     },
     build: {
       lib: {

@@ -6,10 +6,10 @@
     "paths": {
       "@/*": ["src/*"],
       "~/*": ["packages/*"],
-      "vite-lib-starter": ["packages"]
+      "avue-bpmn": ["packages"]
     },
     "types": ["vitest/globals"]
   },
-  "include": ["packages", "packages/.vitepress/**/*", "src"],
+  "include": ["packages", "packages/.vitepress/**/*", "src", "types"],
   "exclude": ["packages/.vitepress/dist"]
 }
