@@ -2,6 +2,7 @@ import path from "path";
 
 import { defineConfig } from "vite";
 import fs from "fs-extra";
+import { isVue2 } from "vue-demi";
 
 import pkg from "./package.json";
 import { getVueVersion } from "./scripts/utils";
@@ -15,15 +16,13 @@ export default defineConfig(async ({ mode }) => {
   };
   const vuePlugin = await vuePluginMap[getVueVersion()]();
   const globals = {
-    // vue: "Vue",
-    // "vue-demi": "VueDemi",
-    // "@vueuse/core": "VueUse",
-    // "lodash-es": "_",
-    // "lodash-unified": "_",
-    // lodash: "_",
-    // "bpmn-js": "BpmnJs",
-    // "diagram-js": "DiagramJs",
-    // "file-saver": "FileSaver"
+    vue: "Vue",
+    "vue-demi": "VueDemi",
+    lodash: "_",
+    "lodash-es": "_",
+    "lodash-unified": "_",
+    "bpmn-js/lib/Modeler": "Modeler",
+    "file-saver": "FileSaver"
   };
   const external = Object.keys(globals);
   if (mode === "production") {
@@ -45,8 +44,7 @@ export default defineConfig(async ({ mode }) => {
       environment: "jsdom"
     },
     optimizeDeps: {
-      // exclude: mode === "production" ? external : []
-      // exclude: ["vue-demi"]
+      exclude: mode === "production" ? external : [isVue2 ? "element-plus" : "element-ui"]
     },
     build: {
       lib: {

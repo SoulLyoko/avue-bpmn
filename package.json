@@ -60,7 +60,6 @@
     "lint": "eslint --ext .ts,.vue ."
   },
   "dependencies": {
-    "@vueuse/core": "^9.1.0",
     "bpmn-js": "^9.3.2",
     "diagram-js": "^8.9.0",
     "file-saver": "^2.0.5",
@@ -102,8 +101,8 @@
     "element-ui": "^2.15.9",
     "enquirer": "^2.3.6",
     "eslint": "^8.22.0",
-    "eslint-plugin-import": "^2.26.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.3.0",
     "esno": "^0.16.3",

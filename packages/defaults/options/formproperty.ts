@@ -1,6 +1,6 @@
 import type { BpmnFormColumnItem } from "~/types";
 
-import { omit } from "lodash-es";
+import { omit } from "lodash-unified";
 
 import { filterObj, updateExtensionElements } from "~/utils";
 import { AvueText } from "~/components/avue-text";
