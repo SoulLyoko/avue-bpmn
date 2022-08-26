@@ -30,8 +30,8 @@ export const BpmnSelect = defineComponent({
           }) ?? []
       );
     });
-    const AvueSelect = dynamicComponent("avue-select");
 
+    const AvueSelect = dynamicComponent("avue-select");
     return () => h(AvueSelect, { props: { ...attrs, dic: taskNodes.value }, on: { ...listeners } });
   }
 });

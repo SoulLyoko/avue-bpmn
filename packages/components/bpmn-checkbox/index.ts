@@ -16,13 +16,12 @@ export const BpmnCheckbox = defineComponent({
     "update:modelValue": (e: string) => e
   },
   setup(props, { emit }) {
-    const ElCheckbox = dynamicComponent("el-checkbox");
-
     const modelValue = computed(() => {
       const v = props[isVue2 ? "value" : "modelValue"];
       return v === "true" || v === true;
     });
 
+    const ElCheckbox = dynamicComponent("el-checkbox");
     return () =>
       h(ElCheckbox, {
         props: {
@@ -30,8 +29,8 @@ export const BpmnCheckbox = defineComponent({
           modelValue: modelValue.value
         },
         on: {
-          input: (v: any) => emit("input", String(v)),
-          "update:modelValue": (v: any) => emit("update:modelValue", String(v))
+          input: (v: string | boolean) => emit("input", String(v)),
+          "update:modelValue": (v: string | boolean) => emit("update:modelValue", String(v))
         }
       });
   }

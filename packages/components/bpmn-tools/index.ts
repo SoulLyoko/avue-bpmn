@@ -26,12 +26,6 @@ export const BpmnTools = defineComponent({
   props: ToolsProps,
   emits: toolsEmits,
   setup(props, { emit, slots }) {
-    const ElTooltip = dynamicComponent("el-tooltip");
-    const ElButton = dynamicComponent("el-button");
-    const ElUpload = dynamicComponent("el-upload");
-    const ElInput = dynamicComponent("el-input");
-    const ElDrawer = dynamicComponent("el-drawer");
-
     const editorVisible = ref(false);
     const xmlForEdit = ref("");
     const { modeler } = toRefs(props);
@@ -58,6 +52,11 @@ export const BpmnTools = defineComponent({
       { label: "前进", icon: "el-icon-arrow-right", onClick: redo }
     ];
 
+    const ElTooltip = dynamicComponent("el-tooltip");
+    const ElButton = dynamicComponent("el-button");
+    const ElUpload = dynamicComponent("el-upload");
+    const ElInput = dynamicComponent("el-input");
+    const ElDrawer = dynamicComponent("el-drawer");
     return () => {
       const renderButton = (item: typeof toolsList[0]) => {
         return h(ElTooltip, { props: { content: item.label, placement: "bottom", effect: "dark" } }, [

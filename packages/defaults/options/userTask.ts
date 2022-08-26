@@ -1,12 +1,10 @@
 import type { BpmnFormColumnItem } from "~/types";
 
-import { cloneDeep } from "lodash-unified";
-
 import { BpmnSelect } from "~/components/bpmn-select";
 import { baseColumn } from "./base";
 
 export const userTaskColumn: BpmnFormColumnItem[] = [
-  ...cloneDeep(baseColumn),
+  ...baseColumn,
   {
     label: "优先级",
     prop: "priority"

@@ -1,16 +1,15 @@
 <template>
   <BpmnModeler
     v-model="formData"
-    :xml="xml"
+    :xml="processData.xml"
     :form-options="formOptions"
     prefix="flowable"
     @init="onInit"
     @input="onUpdateFormData"
     @update:model-value="onUpdateFormData"
-    @update:xml="xml = $event"
+    @update:xml="processData.xml = $event"
     @element-change="onElementChange"
-  >
-  </BpmnModeler>
+  ></BpmnModeler>
 </template>
 
 <script lang="ts">
@@ -27,9 +26,10 @@ export default defineComponent({
   name: "App",
   components: { BpmnModeler },
   setup() {
-    const xml = ref(defaultXml());
     const formData = ref<any>({});
-    const processData = ref({});
+    const processData = ref<any>({
+      xml: defaultXml()
+    });
     let modeler: any;
     function onInit(e: any) {
       modeler = e;
@@ -41,7 +41,14 @@ export default defineComponent({
     }
     function onUpdateFormData(val: any) {
       if (element?.type !== "bpmn:Process") return;
-      processData.value = { ...val };
+      processData.value = {
+        ...processData.value,
+        modelKey: val.id,
+        name: val.name,
+        categoryId: val.category,
+        icon: val.icon,
+        description: val.documentation
+      };
     }
 
     const { options: formOptions, update } = useOptions();
@@ -62,11 +69,11 @@ export default defineComponent({
         dicData: [
           { label: "接收时更新", value: "upReceive" },
           { label: "通过时更新", value: "upPass" },
-          { label: "可编辑字段", value: "editable" }, // 'name,age'
-          { label: "字段是否必填", value: "required" }, // '{"name":true}'
-          { label: "隐藏字段", value: "hidden" }, // 'name,age'
-          { label: "指定跳转", value: "specifyJump" }, // '{"nodeId":"xxx","trigger":"1"}' --trigger用于内部逻辑判断
-          { label: "是发起节点", value: "isStart" } // anyStr
+          { label: "可编辑字段", value: "editable" },
+          { label: "字段是否必填", value: "required" },
+          { label: "隐藏字段", value: "hidden" },
+          { label: "指定跳转", value: "specifyJump" },
+          { label: "是发起节点", value: "isStart" }
         ],
         params: { filterable: true, allowCreate: true, defaultFirstOption: true }
       }),
@@ -91,6 +98,11 @@ export default defineComponent({
     });
     setTimeout(() => {
       update({
+        "processColumn.3.type": "select",
+        "processColumn.3.dicData": [
+          { label: "考勤", value: "1" },
+          { label: "财务", value: "2" }
+        ],
         "buttonColumn.0.value": [
           {
             label: "发送",
@@ -108,13 +120,11 @@ export default defineComponent({
             detail: "true",
             required: "true"
           }
-        ],
-        "processColumn.3.type": "select"
+        ]
       });
     }, 1000);
 
     return {
-      xml,
       formData,
       processData,
       onInit,

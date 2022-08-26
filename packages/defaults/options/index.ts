@@ -13,7 +13,7 @@ export * from "./taskListener";
 export * from "./timelimit";
 export * from "./userTask";
 
-import type { BpmnFormOptions, BpmnFormGroupItem } from "~/types";
+import type { BpmnFormOptions } from "~/types";
 
 import {
   assigneeColumn,
@@ -32,7 +32,7 @@ import {
   userTaskColumn
 } from ".";
 
-export const defaultGroup = [{ label: "基本配置", column: baseColumn }];
+export const defaultGroup = [{ label: "基本配置", prop: "base", column: baseColumn }];
 
 export const defaultOptions: BpmnFormOptions = {
   "bpmn:StartEvent": [
@@ -53,7 +53,7 @@ export const defaultOptions: BpmnFormOptions = {
   "bpmn:UserTask": [
     { label: "基本配置", prop: "base", column: userTaskColumn },
     { label: "人员配置", prop: "assignee", collapse: false, column: assigneeColumn },
-    { label: "多实例配置", prop: "multiInstace", collapse: false, column: multiInstanceColumn },
+    { label: "多实例配置", prop: "multiInstance", collapse: false, column: multiInstanceColumn },
     { label: "按钮配置", prop: "button", collapse: false, column: buttonColumn },
     { label: "表单配置", prop: "formproperty", collapse: false, column: formpropertyColumn },
     { label: "任务监听", prop: "taskListener", collapse: false, column: taskListenerColumn },
@@ -73,7 +73,7 @@ export const defaultOptions: BpmnFormOptions = {
   "bpmn:SubProcess": [
     { label: "基本配置", prop: "base", column: baseColumn },
     { label: "人员配置", prop: "assignee", collapse: false, column: assigneeColumn },
-    { label: "多实例配置", prop: "multiInstace", collapse: false, column: multiInstanceColumn },
+    { label: "多实例配置", prop: "multiInstance", collapse: false, column: multiInstanceColumn },
     { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn }
   ]
 };

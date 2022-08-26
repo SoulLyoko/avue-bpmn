@@ -1,19 +1,27 @@
-import type { BpmnState } from "~/types";
+import type { BpmnFormOption, BpmnFormData } from "~/types";
 import type { ModelerProps, ModelerEmitFn } from "..";
+import type Modeler from "bpmn-js/lib/Modeler";
+import type Modeling from "bpmn-js/lib/features/modeling/Modeling";
+import type Moddle from "moddle/lib/moddle";
+import type ElementRegistry from "diagram-js/lib/core/ElementRegistry";
+import type { Base } from "diagram-js/lib/model";
+import type { AvueFormInstance } from "@smallwei/avue";
 
-import { ref, watch, shallowRef, reactive, isVue2 } from "vue-demi";
+import { ref, watch, shallowRef, isVue2 } from "vue-demi";
 
 import { defaultFormData } from "~/defaults";
 
-export function useBpmnState({ props, emit }: { props: ModelerProps; emit: ModelerEmitFn }): BpmnState {
-  const modeler = shallowRef();
-  const modeling = shallowRef();
-  const moddle = shallowRef();
-  const elementRegistry = shallowRef();
-  const element = shallowRef();
-  const formRef = ref();
-  const formData = ref<Record<string, any>>(Object.assign(defaultFormData, props.value, props.modelValue));
-  const formOption = reactive({ menuBtn: false, span: 24, column: [], group: [] });
+export type UseBpmnStateReturn = ReturnType<typeof useBpmnState>;
+
+export function useBpmnState({ props, emit }: { props: ModelerProps; emit: ModelerEmitFn }) {
+  const modeler = shallowRef<Modeler>();
+  const modeling = shallowRef<Modeling>();
+  const moddle = shallowRef<Moddle>();
+  const elementRegistry = shallowRef<ElementRegistry>();
+  const element = shallowRef<Base>();
+  const formRef = ref<AvueFormInstance>();
+  const formData = ref<BpmnFormData>(Object.assign(defaultFormData, props.value, props.modelValue));
+  const formOption = ref<BpmnFormOption>({ menuBtn: false, span: 24, column: [], group: [] });
   const prefix = (key: string) => (props.prefix ? `${props.prefix}:${key}` : key);
 
   watch(

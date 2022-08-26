@@ -1,38 +1,42 @@
-import type { BpmnState } from "~/types";
+import type { BpmnState, BpmnFormGroupItem } from "~/types";
 import type { WatchStopHandle } from "vue-demi";
 
 import { watch, nextTick } from "vue-demi";
+import { debounce } from "lodash-unified";
 
 import { defaultGroup } from "~/defaults";
-import { buildColumn } from "~/utils";
 
 export type UpdateWatchers = Map<string, WatchStopHandle>;
 
-const watchers: UpdateWatchers = new Map();
 export function useUpdateColumn(state: BpmnState) {
-  const { element, formOption, props } = state;
-  watch(
-    () => [element, props.formOptions],
-    async () => {
-      watchers.forEach(stop => stop?.());
+  const watchers: UpdateWatchers = new Map();
+  const { element, formOption, formRef, props } = state;
+  const watchDebounce = debounce(async () => {
+    watchers.forEach(stop => stop?.());
+    if (!element.value) return;
+    formOption.value.group = [...(props.formOptions![element.value!.type] || defaultGroup)];
+    formOption.value.column = [...buildColumn(formOption.value.group)];
+    formRef.value?.resetForm();
+    await nextTick();
+    updateFormData(state);
+    await nextTick();
+    updateProperties(state, watchers);
+  });
+  watch(() => [element, props.formOptions], watchDebounce, { deep: true });
+}
 
-      if (!element.value) return;
-      formOption.group = [...(props.formOptions![element.value!.type] || defaultGroup)];
-      formOption.column = [...buildColumn(formOption.group)];
-      await nextTick();
-      updateFormData(state);
-      await nextTick();
-      updateProperties(state);
-    },
-    { deep: true }
-  );
+export function buildColumn(groups: BpmnFormGroupItem[]) {
+  return groups
+    .map(e => e.column)
+    .flat()
+    .map(e => ({ ...e, display: false }));
 }
 
 export function updateFormData(state: BpmnState) {
   const { element, formOption, formData, prefix } = state;
   const { businessObject } = element.value ?? {};
   const { $attrs } = businessObject ?? {};
-  formOption.column?.forEach(col => {
+  formOption.value.column?.forEach(col => {
     if (col.updateFormData) {
       col.updateFormData?.({ ...state, businessObject: businessObject!, $attrs });
     } else {
@@ -41,10 +45,9 @@ export function updateFormData(state: BpmnState) {
   });
 }
 
-export function updateProperties(state: BpmnState) {
+export function updateProperties(state: BpmnState, watchers: UpdateWatchers) {
   const { element, formOption, formData, modeling, prefix } = state;
-  const { column } = formOption;
-  column.forEach(col => {
+  formOption.value.column.forEach(col => {
     const stop = watch(
       () => formData.value[col.prop!],
       val => {

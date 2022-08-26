@@ -1,6 +1,7 @@
 import type { PropType } from "vue-demi";
 import type { PropTypes, EmitFn, BpmnFormGroupItem } from "~/types";
-import type { ViewerOptions } from "diagram-js/lib/model";
+import type { Base, ViewerOptions } from "diagram-js/lib/model";
+import type { AvueFormInstance } from "@smallwei/avue";
 
 import { defineComponent, onMounted, provide, isVue2 } from "vue-demi";
 import Modeler from "bpmn-js/lib/Modeler";
@@ -23,6 +24,7 @@ export const modelerProps = {
   xml: { type: String },
   prefix: { type: String as PropType<"activiti" | "camunda" | "flowable" | "bpmn">, default: "bpmn" },
   size: { type: String, default: isVue2 ? "small" : "default" },
+  formWidth: { type: String, default: "30%" },
   formOptions: { type: Object as PropType<Record<string, BpmnFormGroupItem[]>> },
   initOptions: { type: Object as PropType<ViewerOptions>, default: () => ({}) }
 };
@@ -32,7 +34,7 @@ export const modelerEmits = {
   input: (e: Record<string, any>) => e,
   "update:modelValue": (e: Record<string, any>) => e,
   "update:xml": (e: string) => e,
-  "element-change": (e: any) => e
+  "element-change": (e: Base) => e
 };
 
 export const BpmnModeler = defineComponent({
@@ -41,7 +43,7 @@ export const BpmnModeler = defineComponent({
   emits: modelerEmits,
   setup(props, { emit, slots }) {
     const state = useBpmnState({ props, emit });
-    const { modeler, modeling, moddle, elementRegistry, formData, formOption } = state;
+    const { modeler, modeling, moddle, elementRegistry, formData, formOption, formRef } = state;
     provide("bpmnState", state);
 
     const { importXML } = useMethods(state.modeler);
@@ -71,17 +73,18 @@ export const BpmnModeler = defineComponent({
     }
 
     const AvueForm = dynamicComponent("avue-form");
-
     return () =>
       h("div", { class: "bpmn-modeler" }, [
-        h("div", { class: "bpmn-canvas", attrs: { id: bpmnCanvasId } }),
+        h("div", { class: "bpmn-canvas", attrs: { id: bpmnCanvasId }, style: `width:calc(100% - ${props.formWidth})` }),
         h(AvueForm, {
           class: "bpmn-form",
-          props: { value: formData.value, modelValue: formData.value, option: formOption },
+          ref: (el: AvueFormInstance) => (formRef.value = el),
+          props: { value: formData.value, modelValue: formData.value, option: formOption.value },
           on: {
-            [isVue2 ? "input" : "update:modelValue"]: (v: any) => (formData.value = v)
+            [isVue2 ? "input" : "update:modelValue"]: (v: Record<string, any>) => (formData.value = v)
           },
-          scopedSlots: slots
+          scopedSlots: slots,
+          style: `width:${props.formWidth}`
         }),
         h(BpmnTools, { props: { modeler: modeler.value, size: props.size } }, slot(slots["bpmn-tools"]))
       ]);

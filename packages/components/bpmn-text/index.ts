@@ -6,7 +6,6 @@ export type BpmnTextInstance = InstanceType<typeof BpmnText>;
 
 export const BpmnText = defineComponent({
   name: "BpmnText",
-  inheritAttrs: false,
   props: {
     value: { type: String },
     modelValue: { type: String }

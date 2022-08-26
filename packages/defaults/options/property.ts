@@ -32,7 +32,7 @@ export const propertyColumn: BpmnFormColumnItem[] = [
     updateProperties(state) {
       const { formData, moddle, prefix } = state;
       const { propertyList } = formData.value;
-      const propertyElements = propertyList?.map((item: any) => {
+      const propertyElements = propertyList?.map(item => {
         return moddle.value!.create(prefix("Property"), filterObj(item, [], ["$", "_"]));
       });
       updateExtensionElements(state, "Property", propertyElements);
