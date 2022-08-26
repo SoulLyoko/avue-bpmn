@@ -2,10 +2,11 @@ import { defineComponent } from "vue-demi";
 
 import { h } from "~/utils";
 
-export type AvueTextInstance = InstanceType<typeof AvueText>;
+export type BpmnTextInstance = InstanceType<typeof BpmnText>;
 
-export const AvueText = defineComponent({
-  name: "AvueText",
+export const BpmnText = defineComponent({
+  name: "BpmnText",
+  inheritAttrs: false,
   props: {
     value: { type: String },
     modelValue: { type: String }

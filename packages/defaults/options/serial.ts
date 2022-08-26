@@ -44,15 +44,14 @@ export const serialColumn: BpmnFormColumnItem[] = [
         }
       ]
     },
+    value: [{ name: "", prefix: "", dateFormat: "", suffixLength: "", startSequence: "", connector: "", cycle: "" }],
     updateFormData({ formData, businessObject, prefix }) {
       const values = businessObject?.extensionElements?.values ?? [];
       const serialElements = values.filter(e => e.$type === prefix("Serial"));
       if (serialElements.length) {
         formData.value.serialList = serialElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
       } else {
-        formData.value.serialList = [
-          { name: "", prefix: "", dateFormat: "", suffixLength: "", startSequence: "", connector: "", cycle: "" }
-        ];
+        formData.value.serialList = this.value ?? [];
       }
     },
     updateProperties(state) {

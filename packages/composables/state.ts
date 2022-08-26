@@ -1,9 +1,9 @@
 import type { BpmnState } from "~/types";
 import type { ModelerProps, ModelerEmitFn } from "..";
 
-import { ref, watch, shallowRef, reactive, computed, isVue2 } from "vue-demi";
+import { ref, watch, shallowRef, reactive, isVue2 } from "vue-demi";
 
-import { defaultOptions, defaultFormData } from "~/defaults";
+import { defaultFormData } from "~/defaults";
 
 export function useBpmnState({ props, emit }: { props: ModelerProps; emit: ModelerEmitFn }): BpmnState {
   const modeler = shallowRef();
@@ -14,7 +14,6 @@ export function useBpmnState({ props, emit }: { props: ModelerProps; emit: Model
   const formRef = ref();
   const formData = ref<Record<string, any>>(Object.assign(defaultFormData, props.value, props.modelValue));
   const formOption = reactive({ menuBtn: false, span: 24, column: [], group: [] });
-  const options = computed(() => props.formOptions || defaultOptions);
   const prefix = (key: string) => (props.prefix ? `${props.prefix}:${key}` : key);
 
   watch(
@@ -37,7 +36,6 @@ export function useBpmnState({ props, emit }: { props: ModelerProps; emit: Model
     formData,
     formOption,
     formRef,
-    options,
     props,
     prefix
   };

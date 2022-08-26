@@ -2,32 +2,21 @@
   <BpmnModeler
     v-model="formData"
     :xml="xml"
-    prefix="flowable"
     :form-options="formOptions"
+    prefix="flowable"
     @init="onInit"
     @input="onUpdateFormData"
     @update:model-value="onUpdateFormData"
     @update:xml="xml = $event"
     @element-change="onElementChange"
   >
-    <template #bpmn-tools>
-      {{ formData }}
-    </template>
-    <template #name>
-      <el-input v-model="formData.name"></el-input>
-    </template>
   </BpmnModeler>
 </template>
 
 <script lang="ts">
-import type { BpmnFormColumnItem } from "../packages/types";
-
 import { defineComponent, ref } from "vue-demi";
-import { update } from "lodash-unified";
 
-import { BpmnModeler } from "../packages";
-import { defaultXml, defaultOptions } from "../packages/defaults";
-import { filterObj } from "../packages/utils";
+import { BpmnModeler, defaultXml, useOptions } from "../packages";
 import "../packages/styles/bpmn-modeler.scss";
 import "bpmn-js/dist/assets/diagram-js.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
@@ -55,9 +44,41 @@ export default defineComponent({
       processData.value = { ...val };
     }
 
-    let formOptions = defaultOptions;
-    update(defaultOptions, "bpmn:UserTask[7].column[0].children.column[0]", value => {
-      return {
+    const { options: formOptions, update } = useOptions();
+    update({
+      "assigneeColumn.0.value": [{ type: "custom", value: "applyUser" }],
+      "multiInstanceColumn.0.value": {
+        completionCondition: "${nrOfCompletedInstances / nrOfInstances == 1}",
+        collection: "${ysMultiInstanceHandler.getList(execution)}",
+        elementVariable: "assignee"
+      },
+      "multiInstanceColumn.1.value": "${nrOfCompletedInstances / nrOfInstances == 1}",
+      "multiInstanceColumn.2.value": "${ysMultiInstanceHandler.getList(execution)}",
+      "multiInstanceColumn.3.value": "assignee",
+      "propertyColumn.0.value": [{ name: "name", value: "value" }],
+      "propertyColumn.0.children.column.0": value => ({
+        ...value,
+        type: "select",
+        dicData: [
+          { label: "接收时更新", value: "upReceive" },
+          { label: "通过时更新", value: "upPass" },
+          { label: "可编辑字段", value: "editable" }, // 'name,age'
+          { label: "字段是否必填", value: "required" }, // '{"name":true}'
+          { label: "隐藏字段", value: "hidden" }, // 'name,age'
+          { label: "指定跳转", value: "specifyJump" }, // '{"nodeId":"xxx","trigger":"1"}' --trigger用于内部逻辑判断
+          { label: "是发起节点", value: "isStart" } // anyStr
+        ],
+        params: { filterable: true, allowCreate: true, defaultFirstOption: true }
+      }),
+      "serialColumn.0.value": [
+        { dateFormat: "yyyyMMdd", suffixLength: "4", startSequence: "0", connector: "-", cycle: "none" }
+      ],
+      "timelimitColumn.0.value": [
+        { name: "green", min: 10, max: 365 },
+        { name: "yellow", min: 5, max: 10 },
+        { name: "red", min: 0, max: 5 }
+      ],
+      "timelimitColumn.0.children.column.0": value => ({
         ...value,
         type: "select",
         dicData: [
@@ -65,59 +86,33 @@ export default defineComponent({
           { label: "黄灯", value: "yellow" },
           { label: "红灯", value: "red" }
         ],
-        params: {
-          filterable: true,
-          allowCreate: true,
-          defaultFirstOption: true
-        }
-      };
+        params: { filterable: true, allowCreate: true, defaultFirstOption: true }
+      })
     });
-    update(defaultOptions, "bpmn:UserTask[7].column[0]", value => {
-      return {
-        ...value,
-        updateFormData({ formData, businessObject, prefix }) {
-          const values = businessObject?.extensionElements?.values ?? [];
-          const timelimitElements = values.filter(e => e.$type === prefix("Timelimit"));
-          if (timelimitElements.length) {
-            formData.value.timelimitList = timelimitElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
-          } else {
-            formData.value.timelimitList = [
-              { name: "green", min: 10, max: 365 },
-              { name: "yellow", min: 5, max: 10 },
-              { name: "red", min: 0, max: 5 }
-            ];
+    setTimeout(() => {
+      update({
+        "buttonColumn.0.value": [
+          {
+            label: "发送",
+            prop: "flow_pass",
+            display: "true",
+            approval: "false"
           }
-        }
-      } as BpmnFormColumnItem;
-    });
-    update(defaultOptions, "bpmn:UserTask[1].column[0].children.column[0]", value => {
-      return {
-        ...value,
-        type: "select",
-        dicData: [
-          { label: "用户", value: "user" },
-          { label: "部门", value: "dept" },
-          { label: "角色", value: "role" },
-          { label: "岗位", value: "post" },
-          { label: "指定节点", value: "userTask" },
-          { label: "自定义", value: "custom" }
-        ]
-      };
-    });
-    update(defaultOptions, "bpmn:UserTask[1].column[0]", value => {
-      return {
-        ...value,
-        updateFormData({ formData, businessObject, prefix }) {
-          const values = businessObject?.extensionElements?.values ?? [];
-          const assigneeElements = values.filter(e => e.$type === prefix("Assignee"));
-          if (assigneeElements.length) {
-            formData.value.assigneeList = assigneeElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
-          } else {
-            formData.value.assigneeList = [{ type: "custom", value: "applyUser" }];
+        ],
+        "formpropertyColumn.0.value": [
+          {
+            label: "发送",
+            prop: "flow_pass",
+            display: "false",
+            disabled: "true",
+            detail: "true",
+            required: "true"
           }
-        }
-      } as BpmnFormColumnItem;
-    });
+        ],
+        "processColumn.3.type": "select"
+      });
+    }, 1000);
+
     return {
       xml,
       formData,

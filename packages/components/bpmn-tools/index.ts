@@ -1,15 +1,20 @@
+import type { PropType } from "vue-demi";
+import type Modeler from "bpmn-js/lib/Modeler";
 import type { EmitFn } from "~/types";
 
-import { defineComponent, ref } from "vue-demi";
+import { defineComponent, ref, toRefs, isVue2 } from "vue-demi";
 
 import { dynamicComponent, h, slot } from "~/utils";
-import { useInject, useMethods } from "../../composables";
+import { useMethods } from "../../composables";
 
 export type ToolsEmits = typeof toolsEmits;
 export type ToolsEmitFn = EmitFn<ToolsEmits>;
 export type ToolsInstance = InstanceType<typeof BpmnTools>;
 
-export const ToolsProps = {};
+export const ToolsProps = {
+  modeler: { type: Object as PropType<Modeler> },
+  size: { type: String, default: isVue2 ? "small" : "default" }
+};
 
 export const toolsEmits = {
   "xml-change": (e: string) => typeof e === "string"
@@ -17,6 +22,7 @@ export const toolsEmits = {
 
 export const BpmnTools = defineComponent({
   name: "BpmnTools",
+  inheritAttrs: false,
   props: ToolsProps,
   emits: toolsEmits,
   setup(props, { emit, slots }) {
@@ -28,9 +34,8 @@ export const BpmnTools = defineComponent({
 
     const editorVisible = ref(false);
     const xmlForEdit = ref("");
-    const state = useInject();
-    const { modeler } = useInject();
-    const { importXML, openXML, saveXML, downloadXml, fitViewport, zoomIn, zoomOut, undo, redo } = useMethods(modeler!);
+    const { modeler } = toRefs(props);
+    const { importXML, openXML, saveXML, downloadXml, fitViewport, zoomIn, zoomOut, undo, redo } = useMethods(modeler);
     /** 打开编辑XML */
     async function openEditXml() {
       xmlForEdit.value = await saveXML();
@@ -57,17 +62,17 @@ export const BpmnTools = defineComponent({
       const renderButton = (item: typeof toolsList[0]) => {
         return h(ElTooltip, { props: { content: item.label, placement: "bottom", effect: "dark" } }, [
           h(ElButton, {
-            props: { type: "info", plain: true, icon: item.icon, size: state.props.size },
+            props: { type: "info", plain: true, icon: item.icon, size: props.size },
             on: { click: item.onClick }
           })
         ]);
       };
-      return h("div", {}, [
+      return h("div", { class: "bpmn-tools" }, [
         h(ElTooltip, { props: { content: "打开XML", placement: "bottom", effect: "dark" } }, [
           h("span", {}, [
             h(ElUpload, { class: "xml-uploader", props: { action: "", accept: ".bpmn,.xml", beforeUpload: openXML } }, [
               h(ElButton, {
-                props: { type: "info", plain: true, icon: "el-icon-folder-opened", size: state.props.size }
+                props: { type: "info", plain: true, icon: "el-icon-folder-opened", size: props.size }
               })
             ])
           ])
@@ -81,7 +86,8 @@ export const BpmnTools = defineComponent({
               visible: editorVisible.value,
               modelValue: editorVisible.value,
               title: "编辑XML",
-              customClass: "xml-editor"
+              customClass: "xml-editor",
+              size: "50%"
             },
             on: {
               "update:visible": (v: boolean) => (editorVisible.value = v),
@@ -95,7 +101,7 @@ export const BpmnTools = defineComponent({
                 modelValue: xmlForEdit.value,
                 type: "textarea",
                 autosize: { minRows: 10, maxRows: 40 },
-                size: state.props.size
+                size: props.size
               },
               on: { input: (v: string) => (xmlForEdit.value = v) }
             }),
@@ -103,7 +109,7 @@ export const BpmnTools = defineComponent({
               ElButton,
               {
                 class: "confirm-btn",
-                props: { type: "primary", icon: "el-icon-check", size: state.props.size },
+                props: { type: "primary", icon: "el-icon-check", size: props.size },
                 on: { click: confirmUpdateXml }
               },
               "确定"

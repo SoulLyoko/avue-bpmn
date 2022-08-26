@@ -1,7 +1,15 @@
 export * from "./bpmn-modeler";
+export * from "./bpmn-tools";
+export * from "./bpmn-select";
+export * from "./bpmn-checkbox";
+export * from "./bpmn-text";
 
-import { BpmnModeler } from ".";
+import { BpmnModeler, BpmnTools, BpmnSelect, BpmnCheckbox, BpmnText } from ".";
 
 export default {
-  BpmnModeler
+  BpmnModeler,
+  BpmnTools,
+  BpmnSelect,
+  BpmnCheckbox,
+  BpmnText
 };

@@ -18,12 +18,14 @@ export interface BpmnState {
   formRef: Ref<AvueFormInstance | undefined>;
   formData: Ref<BpmnFormData>;
   formOption: BpmnFormOption;
-  options: ComputedRef<BpmnFormOptions>;
   props: ModelerProps;
   prefix: (key: string) => string;
 }
 
-export type BpmnFormOption = FormOption & { column: BpmnFormColumnItem[]; group: BpmnFormGroupItem[] };
+export type BpmnFormOption = Omit<FormOption, "column" | "group"> & {
+  column: BpmnFormColumnItem[];
+  group: BpmnFormGroupItem[];
+};
 export type BpmnFormData = Partial<typeof defaultFormData> & Record<string, any>;
 export interface BpmnFormColumnItem extends FormColumn {
   updateFormData?(state: BpmnState & { businessObject: BpmnBaseElement; $attrs: Record<string, any> }): void;

@@ -55,7 +55,7 @@
     "release": "esno scripts/release.ts",
     "typecheck": "vue-tsc --noEmit",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "ci": "vite build && yarn docs:build && yarn test:all",
+    "ci": "yarn typecheck && yarn test:all && yarn docs:build ",
     "prepare": "husky install",
     "lint": "eslint --ext .ts,.vue ."
   },

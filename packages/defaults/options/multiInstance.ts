@@ -1,9 +1,5 @@
 import type { BpmnFormColumnItem } from "~/types";
 
-const defaultCompletionCondition = "${nrOfCompletedInstances / nrOfInstances == 1}";
-const defaultCollection = "${ysMultiInstanceHandler.getList(execution)}";
-const defaultElementVariable = "assignee";
-
 export const multiInstanceColumn: BpmnFormColumnItem[] = [
   {
     label: "多实例类型",
@@ -14,6 +10,7 @@ export const multiInstanceColumn: BpmnFormColumnItem[] = [
       { label: "时序多重事件", value: "sequential" },
       { label: "循环", value: "standard" }
     ],
+    value: { completionCondition: "", collection: "", elementVariable: "" },
     updateFormData({ formData, businessObject }) {
       const { loopCharacteristics } = businessObject;
       if (loopCharacteristics) {
@@ -39,9 +36,9 @@ export const multiInstanceColumn: BpmnFormColumnItem[] = [
       const loopCharacteristics = args ? moddle.value?.create(...(args as [string, any])) : undefined;
       modeling.value?.updateProperties(element.value!, { loopCharacteristics });
       if (loopCharacteristics) {
-        formData.value.completionCondition = formData.value.completionCondition || defaultCompletionCondition;
-        formData.value.collection = formData.value.collection || defaultCollection;
-        formData.value.elementVariable = formData.value.elementVariable || defaultElementVariable;
+        formData.value.completionCondition = formData.value.completionCondition || this.value.completionCondition;
+        formData.value.collection = formData.value.collection || this.value.collection;
+        formData.value.elementVariable = formData.value.elementVariable || this.value.elementVariable;
       } else {
         formData.value.completionCondition = "";
         formData.value.collection = "";
@@ -52,11 +49,11 @@ export const multiInstanceColumn: BpmnFormColumnItem[] = [
   {
     label: "完成条件",
     prop: "completionCondition",
+    value: "",
     updateFormData({ formData, businessObject }) {
       const { loopCharacteristics } = businessObject;
       if (loopCharacteristics) {
-        formData.value.completionCondition =
-          loopCharacteristics.completionCondition?.body || defaultCompletionCondition;
+        formData.value.completionCondition = loopCharacteristics.completionCondition?.body || this.value;
       } else {
         formData.value.completionCondition = "";
       }
@@ -74,11 +71,12 @@ export const multiInstanceColumn: BpmnFormColumnItem[] = [
   {
     label: "集合",
     prop: "collection",
+    value: "",
     updateFormData({ formData, businessObject, prefix }) {
       const { loopCharacteristics } = businessObject;
       if (loopCharacteristics) {
         const collection = loopCharacteristics.$attrs[prefix("collection")];
-        formData.value.collection = collection || defaultCollection;
+        formData.value.collection = collection || this.value;
       } else {
         formData.value.collection = "";
       }
@@ -95,11 +93,12 @@ export const multiInstanceColumn: BpmnFormColumnItem[] = [
   {
     label: "元素变量",
     prop: "elementVariable",
+    value: "",
     updateFormData({ formData, businessObject, prefix }) {
       const { loopCharacteristics } = businessObject;
       if (loopCharacteristics) {
         const elementVariable = loopCharacteristics.$attrs[prefix("elementVariable")];
-        formData.value.elementVariable = elementVariable || defaultElementVariable;
+        formData.value.elementVariable = elementVariable || this.value;
       } else {
         formData.value.elementVariable = "";
       }

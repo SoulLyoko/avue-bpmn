@@ -9,18 +9,21 @@ export const timelimitColumn: BpmnFormColumnItem[] = [
     prop: "timelimitList",
     type: "dynamic",
     children: {
-      span: 8,
-      labelWidth: 50,
       column: [
         { label: "名称", prop: "name" },
         { label: "最小值", prop: "min", type: "number" },
         { label: "最大值", prop: "max", type: "number" }
       ]
     },
+    value: [],
     updateFormData({ formData, businessObject, prefix }) {
       const values = businessObject?.extensionElements?.values ?? [];
       const timelimitElements = values.filter(e => e.$type === prefix("Timelimit"));
-      formData.value.timelimitList = timelimitElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
+      if (timelimitElements.length) {
+        formData.value.timelimitList = timelimitElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
+      } else {
+        formData.value.timelimitList = this.value ?? [];
+      }
     },
     updateProperties(state) {
       const { formData, moddle, prefix } = state;

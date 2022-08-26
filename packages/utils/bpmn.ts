@@ -1,10 +1,11 @@
 import type { BpmnBaseElement } from "bpmn-js";
 import type { ModdleElement } from "diagram-js/lib/model";
-import type { BpmnFormOptions, BpmnState } from "~/types";
+import type { BpmnFormGroupItem, BpmnState } from "~/types";
 
-import { upperFirst, lowerFirst, update, mergeWith, uniqBy } from "lodash-unified";
+import { reactive, ref, computed, watchEffect, set } from "vue-demi";
+import { upperFirst, lowerFirst, update as _update, set as _set } from "lodash-unified";
 
-import { defaultOptions } from "~/defaults";
+import * as options from "~/defaults/options";
 
 export function updateExtensionElements(state: BpmnState, type: string, elements: ModdleElement[] = []) {
   const { element, moddle, modeling, prefix } = state;
@@ -60,4 +61,38 @@ export function updateListenerProperties(state: BpmnState, type: string) {
     });
   });
   updateExtensionElements(state, upperFirst(type), listenerElements);
+}
+
+export function buildColumn(groups: BpmnFormGroupItem[]) {
+  return groups
+    .map(e => e.column)
+    .flat()
+    .map(e => ({ ...e, display: false }));
+}
+
+export type OptionsKey = keyof typeof options;
+export function useOptions() {
+  const reactiveOptions = reactive(options);
+  const defaultOptions = ref(reactiveOptions.defaultOptions);
+  const update = (
+    updateObj: Record<
+      `${OptionsKey}.${string}`,
+      ((value: any) => any) | string | boolean | number | Array<any> | Object
+    >
+  ) => {
+    Object.entries(updateObj).forEach(([key, value]) => {
+      const [optionsKey, ...path] = key.split(".");
+      if (value instanceof Function) {
+        return _update(reactiveOptions[optionsKey as OptionsKey], path, value);
+      } else {
+        return _set(reactiveOptions[optionsKey as OptionsKey], path, value);
+      }
+    });
+    defaultOptions.value = reactiveOptions.defaultOptions;
+  };
+  // const defaultOptions = computed(() => reactiveOptions.defaultOptions);
+  watchEffect(() => {
+    console.log("🚀 ~ file: bpmn.ts ~ line 92 ~ useOptions ~ defaultOptions", defaultOptions);
+  });
+  return { options: defaultOptions, update };
 }

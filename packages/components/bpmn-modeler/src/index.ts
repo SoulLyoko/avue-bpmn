@@ -6,9 +6,8 @@ import { defineComponent, onMounted, provide, isVue2 } from "vue-demi";
 import Modeler from "bpmn-js/lib/Modeler";
 import { uniqueId, merge } from "lodash-unified";
 
-import { h, slot } from "~/utils";
+import { h, slot, dynamicComponent } from "~/utils";
 import { BpmnTools } from "~/components/bpmn-tools";
-import { BpmnForm } from "~/components/bpmn-form";
 import { useBpmnState, useUpdateColumn, useModelerListener, useMethods } from "~/composables";
 import customModules from "~/modules";
 import customExtensions from "~/extensions";
@@ -24,8 +23,6 @@ export const modelerProps = {
   xml: { type: String },
   prefix: { type: String as PropType<"activiti" | "camunda" | "flowable" | "bpmn">, default: "bpmn" },
   size: { type: String, default: isVue2 ? "small" : "default" },
-  formpropertyList: { type: Array as PropType<any[]>, default: () => [] },
-  buttonList: { type: Array as PropType<any[]>, default: () => [] },
   formOptions: { type: Object as PropType<Record<string, BpmnFormGroupItem[]>> },
   initOptions: { type: Object as PropType<ViewerOptions>, default: () => ({}) }
 };
@@ -44,6 +41,7 @@ export const BpmnModeler = defineComponent({
   emits: modelerEmits,
   setup(props, { emit, slots }) {
     const state = useBpmnState({ props, emit });
+    const { modeler, modeling, moddle, elementRegistry, formData, formOption } = state;
     provide("bpmnState", state);
 
     const { importXML } = useMethods(state.modeler);
@@ -56,7 +54,6 @@ export const BpmnModeler = defineComponent({
 
     const bpmnCanvasId = uniqueId("bpmn-canvas");
     async function initModeler() {
-      const { modeler, modeling, moddle, elementRegistry } = state;
       modeler.value = new Modeler(
         merge(
           {
@@ -73,11 +70,20 @@ export const BpmnModeler = defineComponent({
       emit("init", modeler.value);
     }
 
+    const AvueForm = dynamicComponent("avue-form");
+
     return () =>
       h("div", { class: "bpmn-modeler" }, [
         h("div", { class: "bpmn-canvas", attrs: { id: bpmnCanvasId } }),
-        h(BpmnForm, { class: "bpmn-form", scopedSlots: slots }),
-        h(BpmnTools, { class: "bpmn-tools" }, slot(slots["bpmn-tools"]))
+        h(AvueForm, {
+          class: "bpmn-form",
+          props: { value: formData.value, modelValue: formData.value, option: formOption },
+          on: {
+            [isVue2 ? "input" : "update:modelValue"]: (v: any) => (formData.value = v)
+          },
+          scopedSlots: slots
+        }),
+        h(BpmnTools, { props: { modeler: modeler.value, size: props.size } }, slot(slots["bpmn-tools"]))
       ]);
   }
 });

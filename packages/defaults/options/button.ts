@@ -3,6 +3,7 @@ import type { BpmnFormColumnItem } from "~/types";
 import { pick } from "lodash-unified";
 
 import { filterObj, updateExtensionElements } from "~/utils";
+import { BpmnText } from "~/components/bpmn-text";
 
 export const flowButtonDisplayDict = [
   { label: "显示", value: "true" },
@@ -23,10 +24,10 @@ export const flowButtonApprovalDict = [
 ];
 
 export interface ButtonItem {
-  label: string;
-  prop: string;
-  display: string;
-  approval: string;
+  label?: string;
+  prop?: string;
+  display?: string;
+  approval?: string;
 }
 
 export const buttonColumn: BpmnFormColumnItem[] = [
@@ -40,15 +41,15 @@ export const buttonColumn: BpmnFormColumnItem[] = [
       delBtn: false,
       column: [
         { prop: "_index", hide: true },
-        { label: "字段名", prop: "label", width: 80, component: "v-text" },
-        { label: "字段值", prop: "prop", width: 80, component: "v-text" },
+        { label: "字段名", prop: "label", width: 100, component: BpmnText },
+        { label: "字段值", prop: "prop", width: 100, component: BpmnText },
         {
           label: "显示条件",
           prop: "display",
           type: "select",
           multiple: true,
           dataType: "string",
-          clearable: false,
+          clearable: true,
           dicData: flowButtonDisplayDict
         },
         {
@@ -57,14 +58,15 @@ export const buttonColumn: BpmnFormColumnItem[] = [
           type: "select",
           multiple: true,
           dataType: "string",
-          clearable: false,
+          clearable: true,
           dicData: flowButtonApprovalDict
         }
       ]
     },
-    updateFormData({ formData, props, businessObject, prefix }) {
+    value: [],
+    updateFormData({ formData, businessObject, prefix }) {
       const values = businessObject?.extensionElements?.values ?? [];
-      formData.value.buttonList = props.buttonList.map(item => {
+      formData.value.buttonList = this.value?.map((item: ButtonItem) => {
         const findButtonElement = values.find(e => e.$type === prefix("Button") && e.$attrs.prop === item.prop);
         const attrs = findButtonElement?.$attrs ?? {};
         return { ...item, ...pick(attrs, "display", "approval") };

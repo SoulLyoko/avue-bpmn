@@ -19,10 +19,15 @@ export const propertyColumn: BpmnFormColumnItem[] = [
         { label: "属性值", prop: "value", type: "textarea", minRows: 1 }
       ]
     },
+    value: [],
     updateFormData({ formData, businessObject, prefix }) {
       const values = businessObject?.extensionElements?.values ?? [];
       const propertyElements = values.filter(e => e.$type === prefix("Property"));
-      formData.value.propertyList = propertyElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
+      if (propertyElements.length) {
+        formData.value.propertyList = propertyElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
+      } else {
+        formData.value.propertyList = this.value ?? [];
+      }
     },
     updateProperties(state) {
       const { formData, moddle, prefix } = state;

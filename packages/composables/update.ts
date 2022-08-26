@@ -3,26 +3,28 @@ import type { WatchStopHandle } from "vue-demi";
 
 import { watch, nextTick } from "vue-demi";
 
-import { defaultGroup, buildColumn } from "~/defaults";
+import { defaultGroup } from "~/defaults";
+import { buildColumn } from "~/utils";
 
-type UpdateWatchers = Map<string, WatchStopHandle>;
+export type UpdateWatchers = Map<string, WatchStopHandle>;
 
+const watchers: UpdateWatchers = new Map();
 export function useUpdateColumn(state: BpmnState) {
-  const { element, formOption, options } = state;
-  const watchers: UpdateWatchers = new Map();
+  const { element, formOption, props } = state;
   watch(
-    element,
-    async ele => {
-      if (!ele) return;
-      formOption.group = [...(options.value[ele.type] || defaultGroup)];
+    () => [element, props.formOptions],
+    async () => {
+      watchers.forEach(stop => stop?.());
+
+      if (!element.value) return;
+      formOption.group = [...(props.formOptions![element.value!.type] || defaultGroup)];
       formOption.column = [...buildColumn(formOption.group)];
       await nextTick();
-      watchers.forEach(stop => stop?.());
       updateFormData(state);
       await nextTick();
-      updateProperties(state, watchers);
+      updateProperties(state);
     },
-    { immediate: true }
+    { deep: true }
   );
 }
 
@@ -30,34 +32,33 @@ export function updateFormData(state: BpmnState) {
   const { element, formOption, formData, prefix } = state;
   const { businessObject } = element.value ?? {};
   const { $attrs } = businessObject ?? {};
-  formOption.column?.forEach((col: any) => {
+  formOption.column?.forEach(col => {
     if (col.updateFormData) {
-      col.updateFormData?.({ ...state, businessObject, $attrs });
+      col.updateFormData?.({ ...state, businessObject: businessObject!, $attrs });
     } else {
-      formData.value[col.prop] = $attrs[prefix(col.prop!)] || col.value || "";
+      formData.value[col.prop!] = $attrs[prefix(col.prop!)] || col.value || "";
     }
   });
 }
 
-export function updateProperties(state: BpmnState, watchers: UpdateWatchers) {
+export function updateProperties(state: BpmnState) {
   const { element, formOption, formData, modeling, prefix } = state;
   const { column } = formOption;
   column.forEach(col => {
     const stop = watch(
-      () => formData.value[col.prop as any],
+      () => formData.value[col.prop!],
       val => {
-        console.log("updateProperties");
         const { businessObject } = element.value ?? {};
         const { $attrs } = businessObject ?? {};
         if (col.updateProperties) {
-          col.updateProperties?.({ ...state, businessObject, $attrs });
+          col.updateProperties?.({ ...state, businessObject: businessObject!, $attrs });
         } else {
           modeling.value?.updateProperties(element.value!, {
             [prefix(col.prop!)]: val || undefined
           });
         }
       },
-      { deep: true }
+      { deep: true, immediate: true }
     );
     watchers.set(col.prop!, stop);
   });

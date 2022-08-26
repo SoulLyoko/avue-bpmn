@@ -1,5 +1,5 @@
 import { baseColumn } from "./base";
-import { UserTaskSelect } from "~/components/user-task-select";
+import { BpmnSelect } from "~/components/bpmn-select";
 
 export const processColumn = [
   ...baseColumn.map(col => {
@@ -8,11 +8,14 @@ export const processColumn = [
       label: col.label?.replace("节点", "流程")
     };
   }),
+  { label: "流程分类", prop: "category" },
+  { label: "图标", prop: "icon" },
   {
     label: "跳过第一节点",
     prop: "skipFirstNode",
-    labelWidth: 100,
     type: "switch",
+    labelWidth: 100,
+    value: "true",
     dicData: [
       { label: "否", value: "false" },
       { label: "是", value: "true" }
@@ -23,6 +26,7 @@ export const processColumn = [
     prop: "rollbackNode",
     type: "select",
     labelWidth: 100,
-    component: UserTaskSelect
+    component: BpmnSelect,
+    params: { filterType: "bpmn:UserTask" }
   }
 ];
