@@ -17,10 +17,6 @@ import { defineComponent, ref } from "vue-demi";
 
 import { BpmnModeler, defaultXml, useOptions } from "../packages";
 import "../packages/styles/bpmn-modeler.scss";
-import "bpmn-js/dist/assets/diagram-js.css";
-import "bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
-import "bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css";
-import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
 
 export default defineComponent({
   name: "App",

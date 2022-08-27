@@ -16,7 +16,11 @@ function buildTypes() {
 }
 function buildStyles() {
   console.log("Building styles...");
-  const common = () => src("packages/**/*.scss").pipe(gulpSass(sass).sync()).pipe(autoprefixer()).pipe(cleancss());
+  const common = () =>
+    src("packages/**/*.scss")
+      .pipe(gulpSass(sass).sync())
+      .pipe(autoprefixer())
+      .pipe(cleancss({ inline: ["none"] }));
   const task1 = () => common().pipe(dest("es"));
   const task2 = () => common().pipe(dest("lib"));
   series(task1, task2)(err => !err && copyStyle());
