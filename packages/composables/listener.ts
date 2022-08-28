@@ -11,7 +11,7 @@ export function useModelerListener({ state, emit }: { state: BpmnState; emit: Mo
     const processElement = elementRegistry.value?.find(item => item.type === "bpmn:Process");
     await nextTick();
     element.value = ele || processElement;
-    emit("element-change", element.value!);
+    emit("update:element", element.value!);
   });
   modeler.value?.on("commandStack.changed", async () => {
     const res = await modeler.value?.saveXML?.({ format: true });

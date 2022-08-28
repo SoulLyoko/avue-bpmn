@@ -4,39 +4,44 @@
     :xml="processData.xml"
     :form-options="formOptions"
     prefix="flowable"
-    @init="onInit"
+    @update:modeler="modeler = $event"
+    @update:element="element = $event"
+    @update:xml="processData.xml = $event"
     @input="onUpdateFormData"
     @update:model-value="onUpdateFormData"
-    @update:xml="processData.xml = $event"
-    @element-change="onElementChange"
-  ></BpmnModeler>
+  >
+    <template #bpmn-tools>
+      <el-input
+        type="textarea"
+        :value="JSON.stringify(processData, null, 2)"
+        rows="10"
+        style="width: 300px; vertical-align: top"
+      ></el-input>
+    </template>
+  </BpmnModeler>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue-demi";
+import type Modeler from "bpmn-js/lib/Modeler";
+import type { Base } from "diagram-js/lib/model";
 
-import { BpmnModeler, defaultXml, useOptions } from "../packages";
+import { defineComponent, ref, shallowRef } from "vue-demi";
+
+import { BpmnModeler, defaultXml, useOptions, defaultFormData } from "../packages";
 import "../packages/styles/bpmn-modeler.scss";
 
 export default defineComponent({
   name: "App",
   components: { BpmnModeler },
   setup() {
-    const formData = ref<any>({});
+    const formData = ref(defaultFormData);
     const processData = ref<any>({
       xml: defaultXml()
     });
-    let modeler: any;
-    function onInit(e: any) {
-      modeler = e;
-      console.log("🚀 ~ file: App.vue ~ line 38 ~ onInit ~ modeler", modeler);
-    }
-    let element: any;
-    function onElementChange(ele: any) {
-      element = ele;
-    }
+    const modeler = shallowRef<Modeler>();
+    const element = shallowRef<Base>();
     function onUpdateFormData(val: any) {
-      if (element?.type !== "bpmn:Process") return;
+      if (element.value?.type !== "bpmn:Process") return;
       processData.value = {
         ...processData.value,
         modelKey: val.id,
@@ -47,21 +52,24 @@ export default defineComponent({
       };
     }
 
+    const completionCondition = "${nrOfCompletedInstances / nrOfInstances == 1}";
+    const collection = "${ysMultiInstanceHandler.getList(execution)}";
+    const elementVariable = "assignee";
+    const allowCreateSelect = {
+      type: "select",
+      params: { filterable: true, allowCreate: true, defaultFirstOption: true }
+    };
     const { options: formOptions, update } = useOptions();
     update({
-      "assigneeColumn.0.value": [{ type: "custom", value: "applyUser" }],
-      "multiInstanceColumn.0.value": {
-        completionCondition: "${nrOfCompletedInstances / nrOfInstances == 1}",
-        collection: "${ysMultiInstanceHandler.getList(execution)}",
-        elementVariable: "assignee"
-      },
-      "multiInstanceColumn.1.value": "${nrOfCompletedInstances / nrOfInstances == 1}",
-      "multiInstanceColumn.2.value": "${ysMultiInstanceHandler.getList(execution)}",
-      "multiInstanceColumn.3.value": "assignee",
-      "propertyColumn.0.value": [{ name: "name", value: "value" }],
-      "propertyColumn.0.children.column.0": value => ({
+      "assigneeListColumn.value": [{ type: "custom", value: "applyUser" }],
+      "completionConditionColumn.value": completionCondition,
+      "collectionColumn.value": collection,
+      "elementVariableColumn.value": elementVariable,
+      "multiInstanceTypeColumn.value": { completionCondition, collection, elementVariable },
+      "propertyListColumn.value": [{ name: "name", value: "value" }],
+      "propertyListColumn.children.column.0": value => ({
         ...value,
-        type: "select",
+        ...allowCreateSelect,
         dicData: [
           { label: "接收时更新", value: "upReceive" },
           { label: "通过时更新", value: "upPass" },
@@ -70,36 +78,29 @@ export default defineComponent({
           { label: "隐藏字段", value: "hidden" },
           { label: "指定跳转", value: "specifyJump" },
           { label: "是发起节点", value: "isStart" }
-        ],
-        params: { filterable: true, allowCreate: true, defaultFirstOption: true }
+        ]
       }),
-      "serialColumn.0.value": [
+      "serialListColumn.value": [
         { dateFormat: "yyyyMMdd", suffixLength: "4", startSequence: "0", connector: "-", cycle: "none" }
       ],
-      "timelimitColumn.0.value": [
+      "timelimitListColumn.value": [
         { name: "green", min: 10, max: 365 },
         { name: "yellow", min: 5, max: 10 },
         { name: "red", min: 0, max: 5 }
       ],
-      "timelimitColumn.0.children.column.0": value => ({
+      "timelimitListColumn.children.column.0": value => ({
         ...value,
-        type: "select",
+        ...allowCreateSelect,
         dicData: [
           { label: "绿灯", value: "green" },
           { label: "黄灯", value: "yellow" },
           { label: "红灯", value: "red" }
-        ],
-        params: { filterable: true, allowCreate: true, defaultFirstOption: true }
+        ]
       })
     });
     setTimeout(() => {
       update({
-        "processColumn.3.type": "select",
-        "processColumn.3.dicData": [
-          { label: "考勤", value: "1" },
-          { label: "财务", value: "2" }
-        ],
-        "buttonColumn.0.value": [
+        "buttonListColumn.value": [
           {
             label: "发送",
             prop: "flow_pass",
@@ -107,7 +108,7 @@ export default defineComponent({
             approval: "false"
           }
         ],
-        "formpropertyColumn.0.value": [
+        "formpropertyListColumn.value": [
           {
             label: "发送",
             prop: "flow_pass",
@@ -116,6 +117,11 @@ export default defineComponent({
             detail: "true",
             required: "true"
           }
+        ],
+        "processCategoryColumn.type": "select",
+        "processCategoryColumn.dicData": [
+          { label: "考勤", value: "1" },
+          { label: "财务", value: "2" }
         ]
       });
     }, 1000);
@@ -123,8 +129,8 @@ export default defineComponent({
     return {
       formData,
       processData,
-      onInit,
-      onElementChange,
+      modeler,
+      element,
       onUpdateFormData,
       formOptions
     };

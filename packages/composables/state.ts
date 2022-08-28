@@ -9,8 +9,6 @@ import type { AvueFormInstance } from "@smallwei/avue";
 
 import { ref, watch, shallowRef, isVue2 } from "vue-demi";
 
-import { defaultFormData } from "~/defaults";
-
 export type UseBpmnStateReturn = ReturnType<typeof useBpmnState>;
 
 export function useBpmnState({ props, emit }: { props: ModelerProps; emit: ModelerEmitFn }) {
@@ -20,7 +18,7 @@ export function useBpmnState({ props, emit }: { props: ModelerProps; emit: Model
   const elementRegistry = shallowRef<ElementRegistry>();
   const element = shallowRef<Base>();
   const formRef = ref<AvueFormInstance>();
-  const formData = ref<BpmnFormData>(Object.assign(defaultFormData, props.value, props.modelValue));
+  const formData = ref<BpmnFormData>(isVue2 ? props.value : props.modelValue);
   const formOption = ref<BpmnFormOption>({ menuBtn: false, span: 24, column: [], group: [] });
   const prefix = (key: string) => (props.prefix ? `${props.prefix}:${key}` : key);
 

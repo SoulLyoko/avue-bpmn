@@ -16,16 +16,14 @@ export const ToolsProps = {
   size: { type: String, default: isVue2 ? "small" : "default" }
 };
 
-export const toolsEmits = {
-  "xml-change": (e: string) => typeof e === "string"
-};
+export const toolsEmits = {};
 
 export const BpmnTools = defineComponent({
   name: "BpmnTools",
   inheritAttrs: false,
   props: ToolsProps,
   emits: toolsEmits,
-  setup(props, { emit, slots }) {
+  setup(props, { slots }) {
     const editorVisible = ref(false);
     const xmlForEdit = ref("");
     const { modeler } = toRefs(props);
@@ -39,7 +37,6 @@ export const BpmnTools = defineComponent({
     async function confirmUpdateXml() {
       await importXML(xmlForEdit.value);
       editorVisible.value = false;
-      emit("xml-change", xmlForEdit.value);
     }
 
     const toolsList = [

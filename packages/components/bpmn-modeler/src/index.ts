@@ -30,11 +30,11 @@ export const modelerProps = {
 };
 
 export const modelerEmits = {
-  init: (e: Modeler) => e,
   input: (e: Record<string, any>) => e,
   "update:modelValue": (e: Record<string, any>) => e,
-  "update:xml": (e: string) => e,
-  "element-change": (e: Base) => e
+  "update:modeler": (e: Modeler) => e,
+  "update:element": (e: Base) => e,
+  "update:xml": (e: string) => e
 };
 
 export const BpmnModeler = defineComponent({
@@ -69,7 +69,7 @@ export const BpmnModeler = defineComponent({
       modeling.value = modeler.value?.get("modeling");
       moddle.value = modeler.value?.get("moddle");
       elementRegistry.value = modeler.value?.get("elementRegistry");
-      emit("init", modeler.value);
+      emit("update:modeler", modeler.value);
     }
 
     const AvueForm = dynamicComponent("avue-form");

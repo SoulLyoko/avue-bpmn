@@ -15,7 +15,7 @@ export function updateExtensionElements(state: BpmnState, type: string, elements
   });
 }
 
-export function updateListenerFormData(state: BpmnState, type: string) {
+export function updateListenerFormData(state: BpmnState, type: `${string}Listener`) {
   const { element, formData, prefix } = state;
   const { businessObject } = element.value!;
   const values = (businessObject as BpmnBaseElement)?.extensionElements?.values ?? [];
@@ -40,7 +40,7 @@ export function updateListenerFormData(state: BpmnState, type: string) {
   });
 }
 
-export function updateListenerProperties(state: BpmnState, type: string) {
+export function updateListenerProperties(state: BpmnState, type: `${string}Listener`) {
   const { moddle, formData, prefix } = state;
   const listenerList: any[] = formData.value[lowerFirst(type + "List")] || [];
   const listenerElements = listenerList.map(listenerItem => {
