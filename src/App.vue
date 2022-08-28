@@ -13,7 +13,7 @@
     <template #bpmn-tools>
       <el-input
         type="textarea"
-        :value="JSON.stringify(processData, null, 2)"
+        :value="JSON.stringify(formData, null, 2)"
         rows="10"
         style="width: 300px; vertical-align: top"
       ></el-input>
