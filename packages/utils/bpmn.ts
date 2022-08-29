@@ -1,6 +1,7 @@
 import type { BpmnBaseElement } from "bpmn-js";
 import type { ModdleElement } from "diagram-js/lib/model";
 import type { BpmnState } from "~/types";
+import type { ListenerItem } from "~/defaults/options";
 
 import { upperFirst, lowerFirst } from "lodash-unified";
 
@@ -20,15 +21,15 @@ export function updateListenerFormData(state: BpmnState, type: `${string}Listene
   const { businessObject } = element.value!;
   const values = (businessObject as BpmnBaseElement)?.extensionElements?.values ?? [];
   const listenerElements = values.filter(e => e.$type === prefix(upperFirst(type)));
-  formData.value[lowerFirst(type + "List")] = listenerElements.map(listenerItem => {
+  formData.value[lowerFirst(type)] = listenerElements.map(listenerItem => {
     const {
       $attrs: { event },
-      fields
+      fields: fieldsElements
     } = listenerItem;
     const eventType = ["class", "expression", "delegateExpression"].find(type => type in listenerItem.$attrs);
     const eventValue = listenerItem.$attrs[eventType || ""];
-    const fieldList =
-      fields?.map((fieldItem: any) => {
+    const fields =
+      fieldsElements?.map((fieldItem: ModdleElement) => {
         const {
           $attrs: { name }
         } = fieldItem;
@@ -36,25 +37,25 @@ export function updateListenerFormData(state: BpmnState, type: `${string}Listene
         const fieldValue = fieldItem[fieldType || ""];
         return { fieldName: name, fieldType, fieldValue };
       }) ?? [];
-    return { eventName: event, eventType, eventValue, fieldList };
+    return { eventName: event, eventType, eventValue, fields };
   });
 }
 
 export function updateListenerProperties(state: BpmnState, type: `${string}Listener`) {
   const { moddle, formData, prefix } = state;
-  const listenerList: any[] = formData.value[lowerFirst(type + "List")] || [];
+  const listenerList: ListenerItem[] = formData.value[lowerFirst(type)] || [];
   const listenerElements = listenerList.map(listenerItem => {
-    const { eventName, eventType, eventValue, fieldList } = listenerItem;
-    const fieldListElements =
-      fieldList?.map((fieldItem: any) => {
+    const { eventName, eventType, eventValue, fields } = listenerItem;
+    const fieldsElements =
+      fields?.map(fieldItem => {
         const { fieldName, fieldType, fieldValue } = fieldItem;
-        const newFieldItem = { name: fieldName, [fieldType]: fieldValue };
+        const newFieldItem = { name: fieldName, [fieldType!]: fieldValue };
         return moddle.value?.create(prefix("Field"), { ...newFieldItem });
       }) ?? [];
     return moddle.value!.create(prefix(upperFirst(type)), {
       event: eventName,
-      [eventType]: eventValue,
-      fields: fieldListElements
+      [eventType!]: eventValue,
+      fields: fieldsElements
     });
   });
   updateExtensionElements(state, upperFirst(type), listenerElements);

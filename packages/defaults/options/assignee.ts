@@ -2,15 +2,15 @@ import type { BpmnFormColumnItem } from "~/types";
 
 import { filterObj, updateExtensionElements } from "~/utils";
 
-export interface AssigneeListItem {
+export interface AssigneeItem {
   type?: string;
   value?: string;
 }
 
-export const assigneeListColumn: BpmnFormColumnItem = {
+export const assigneeColumn: BpmnFormColumnItem = {
   label: "",
   labelWidth: 0,
-  prop: "assigneeList",
+  prop: "assignee",
   type: "dynamic",
   children: {
     rowKey: "type",
@@ -38,17 +38,17 @@ export const assigneeListColumn: BpmnFormColumnItem = {
     const values = businessObject?.extensionElements?.values ?? [];
     const assigneeElements = values.filter(e => e.$type === prefix("Assignee"));
     if (assigneeElements.length) {
-      formData.value.assigneeList = assigneeElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
+      formData.value.assignee = assigneeElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
     } else {
-      formData.value.assigneeList = this.value ?? [];
+      formData.value.assignee = this.value ?? [];
     }
   },
   updateProperties(state) {
     const { formData, moddle, prefix } = state;
-    const { assigneeList } = formData.value;
-    const assigneeListElements = assigneeList?.map(item => {
+    const { assignee } = formData.value;
+    const assigneeElements = assignee?.map(item => {
       return moddle.value!.create(prefix("Assignee"), filterObj(item, [], ["$", "_"]));
     });
-    updateExtensionElements(state, "Assignee", assigneeListElements);
+    updateExtensionElements(state, "Assignee", assigneeElements);
   }
 };

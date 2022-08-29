@@ -2,7 +2,7 @@ import type { BpmnFormColumnItem } from "~/types";
 
 import { filterObj, updateExtensionElements } from "~/utils";
 
-export interface SerialListItem {
+export interface SerialItem {
   name?: string;
   prefix?: string;
   dateFormat?: string;
@@ -12,10 +12,10 @@ export interface SerialListItem {
   cycle?: string;
 }
 
-export const serialListColumn: BpmnFormColumnItem = {
+export const serialColumn: BpmnFormColumnItem = {
   label: "",
   labelWidth: 0,
-  prop: "serialList",
+  prop: "serial",
   type: "dynamic",
   children: {
     addBtn: false,
@@ -48,17 +48,17 @@ export const serialListColumn: BpmnFormColumnItem = {
     const values = businessObject?.extensionElements?.values ?? [];
     const serialElements = values.filter(e => e.$type === prefix("Serial"));
     if (serialElements.length) {
-      formData.value.serialList = serialElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
+      formData.value.serial = serialElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
     } else {
-      formData.value.serialList = this.value ?? [];
+      formData.value.serial = this.value ?? [];
     }
   },
   updateProperties(state) {
     const { formData, moddle, prefix } = state;
-    const { serialList } = formData.value;
-    const serialListElements = serialList?.map(item => {
+    const { serial } = formData.value;
+    const serialElements = serial?.map(item => {
       return moddle.value!.create(prefix("Serial"), filterObj(item, [], ["$", "_"]));
     });
-    updateExtensionElements(state, "Serial", serialListElements);
+    updateExtensionElements(state, "Serial", serialElements);
   }
 };

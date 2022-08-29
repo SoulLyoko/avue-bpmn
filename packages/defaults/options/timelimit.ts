@@ -2,16 +2,16 @@ import type { BpmnFormColumnItem } from "~/types";
 
 import { filterObj, updateExtensionElements } from "~/utils";
 
-export interface TimelimitListItem {
+export interface TimelimitItem {
   name?: string;
   min?: string;
   max?: string;
 }
 
-export const timelimitListColumn: BpmnFormColumnItem = {
+export const timelimitColumn: BpmnFormColumnItem = {
   label: "",
   labelWidth: 0,
-  prop: "timelimitList",
+  prop: "timelimit",
   type: "dynamic",
   children: {
     column: [
@@ -25,17 +25,17 @@ export const timelimitListColumn: BpmnFormColumnItem = {
     const values = businessObject?.extensionElements?.values ?? [];
     const timelimitElements = values.filter(e => e.$type === prefix("Timelimit"));
     if (timelimitElements.length) {
-      formData.value.timelimitList = timelimitElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
+      formData.value.timelimit = timelimitElements.map(e => filterObj(e.$attrs, [], ["$", "_"]));
     } else {
-      formData.value.timelimitList = this.value ?? [];
+      formData.value.timelimit = this.value ?? [];
     }
   },
   updateProperties(state) {
     const { formData, moddle, prefix } = state;
-    const { timelimitList } = formData.value;
-    const timelimitListElements = timelimitList?.map(item => {
+    const { timelimit } = formData.value;
+    const timelimitElements = timelimit?.map(item => {
       return moddle.value!.create(prefix("Timelimit"), filterObj(item, [], ["$", "_"]));
     });
-    updateExtensionElements(state, "Timelimit", timelimitListElements);
+    updateExtensionElements(state, "Timelimit", timelimitElements);
   }
 };

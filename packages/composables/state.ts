@@ -19,7 +19,7 @@ export function useBpmnState({ props, emit }: { props: ModelerProps; emit: Model
   const element = shallowRef<Base>();
   const formRef = ref<AvueFormInstance>();
   const formData = ref<BpmnFormData>(isVue2 ? props.value : props.modelValue);
-  const formOption = ref<BpmnFormOption>({ menuBtn: false, span: 24, column: [], group: [] });
+  const formOption = ref<BpmnFormOption>({ menuBtn: false, span: 24, size: props.size, column: [], group: [] });
   const prefix = (key: string) => (props.prefix ? `${props.prefix}:${key}` : key);
 
   watch(

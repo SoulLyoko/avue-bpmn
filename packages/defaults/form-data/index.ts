@@ -1,12 +1,11 @@
 import type {
-  AssigneeListItem,
-  ButtonListItem,
-  FormpropertyListItem,
-  PropertyListItem,
-  SerialListItem,
-  TaskListenerListItem,
-  ExecutionListenerListItem,
-  TimelimitListItem
+  AssigneeItem,
+  ButtonItem,
+  FormpropertyItem,
+  PropertyItem,
+  SerialItem,
+  ListenerItem,
+  TimelimitItem
 } from "../options";
 
 export const defaultFormData = {
@@ -28,12 +27,12 @@ export const defaultFormData = {
   sequenceFlowType: "",
   conditionExpression: "",
   skipExpression: "",
-  assigneeList: [] as AssigneeListItem[],
-  buttonList: [] as ButtonListItem[],
-  executionListenerList: [] as ExecutionListenerListItem[],
-  formpropertyList: [] as FormpropertyListItem[],
-  propertyList: [] as PropertyListItem[],
-  serialList: [] as SerialListItem[],
-  taskListenerList: [] as TaskListenerListItem[],
-  timelimitList: [] as TimelimitListItem[]
+  assignee: [] as AssigneeItem[],
+  button: [] as ButtonItem[],
+  executionListener: [] as ListenerItem[],
+  formproperty: [] as FormpropertyItem[],
+  property: [] as PropertyItem[],
+  serial: [] as SerialItem[],
+  taskListener: [] as ListenerItem[],
+  timelimit: [] as TimelimitItem[]
 };

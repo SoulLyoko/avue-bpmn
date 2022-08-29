@@ -61,13 +61,13 @@ export default defineComponent({
     };
     const { options: formOptions, update } = useOptions();
     update({
-      "assigneeListColumn.value": [{ type: "custom", value: "applyUser" }],
+      "assigneeColumn.value": [{ type: "custom", value: "applyUser" }],
       "completionConditionColumn.value": completionCondition,
       "collectionColumn.value": collection,
       "elementVariableColumn.value": elementVariable,
       "multiInstanceTypeColumn.value": { completionCondition, collection, elementVariable },
-      "propertyListColumn.value": [{ name: "name", value: "value" }],
-      "propertyListColumn.children.column.0": value => ({
+      "propertyColumn.value": [{ name: "name", value: "value" }],
+      "propertyColumn.children.column.0": value => ({
         ...value,
         ...allowCreateSelect,
         dicData: [
@@ -80,15 +80,15 @@ export default defineComponent({
           { label: "是发起节点", value: "isStart" }
         ]
       }),
-      "serialListColumn.value": [
+      "serialColumn.value": [
         { dateFormat: "yyyyMMdd", suffixLength: "4", startSequence: "0", connector: "-", cycle: "none" }
       ],
-      "timelimitListColumn.value": [
+      "timelimitColumn.value": [
         { name: "green", min: 10, max: 365 },
         { name: "yellow", min: 5, max: 10 },
         { name: "red", min: 0, max: 5 }
       ],
-      "timelimitListColumn.children.column.0": value => ({
+      "timelimitColumn.children.column.0": value => ({
         ...value,
         ...allowCreateSelect,
         dicData: [
@@ -100,7 +100,7 @@ export default defineComponent({
     });
     setTimeout(() => {
       update({
-        "buttonListColumn.value": [
+        "buttonColumn.value": [
           {
             label: "发送",
             prop: "flow_pass",
@@ -108,7 +108,7 @@ export default defineComponent({
             approval: "false"
           }
         ],
-        "formpropertyListColumn.value": [
+        "formpropertyColumn.value": [
           {
             label: "发送",
             prop: "flow_pass",
