@@ -3,7 +3,6 @@ import type { BpmnFormColumnItem } from "~/types";
 export const idColumn: BpmnFormColumnItem = {
   label: "节点id",
   prop: "id",
-  readonly: true,
   updateFormData({ formData, businessObject }) {
     const { id } = businessObject;
     formData.value.id = id || "";
