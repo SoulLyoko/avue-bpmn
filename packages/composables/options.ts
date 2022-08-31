@@ -16,7 +16,7 @@ export function useOptions() {
     Object.entries(updateObj).forEach(([key, value]) => {
       const [optionsKey, ...path] = key.split(".");
       if (value instanceof Function) {
-        return _update(cloneOptions[optionsKey as OptionsKey], path, value);
+        return _update(cloneOptions[optionsKey as OptionsKey], path, value as any);
       } else {
         return _set(cloneOptions[optionsKey as OptionsKey], path, value);
       }
