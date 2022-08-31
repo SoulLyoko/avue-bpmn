@@ -34,7 +34,7 @@ export function switch2_7() {
 
 export function switch3() {
   if (getVueVersion() === "3") return;
-  execSync("yarn add vue@latest -D");
+  execSync("yarn add vue@3.2.37 -D");
   execSync("yarn add @vue/test-utils -D");
   execSync("yarn add @smallwei/avue@next -D");
   execSync("vue-demi-switch 3");

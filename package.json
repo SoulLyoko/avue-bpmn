@@ -79,7 +79,7 @@
     }
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.1.1",
+    "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@smallwei/avue": "^3.1.0",
     "@types/file-saver": "^2.0.5",
@@ -88,11 +88,11 @@
     "@types/lodash": "^4.14.184",
     "@types/lodash-es": "^4.17.6",
     "@types/node": "^18.7.14",
-    "@typescript-eslint/eslint-plugin": "^5.36.0",
-    "@typescript-eslint/parser": "^5.36.0",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
     "@vitejs/plugin-vue": "^2.3.4",
     "@vitejs/plugin-vue2": "^1.1.2",
-    "@vue/compiler-sfc": "^3.2.38",
+    "@vue/compiler-sfc": "3.2.37",
     "@vue/composition-api": "^1.7.0",
     "@vue/test-utils": "^2.0.2",
     "@vue/tsconfig": "^0.1.3",
@@ -116,17 +116,16 @@
     "jsdom": "^20.0.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "sass": "^1.54.6",
-    "ts-node": "^10.9.1",
+    "sass": "^1.54.7",
     "tsc-alias": "^1.7.0",
     "typescript": "^4.8.2",
     "vite": "^2.9.15",
     "vite-plugin-vue2": "^2.0.2",
     "vitepress": "^0.22.4",
     "vitest": "^0.22.1",
-    "vue": "^3.2.38",
+    "vue": "3.2.37",
     "vue-template-compiler": "2.6.14",
-    "vue-tsc": "^0.40.4"
+    "vue-tsc": "^0.40.5"
   },
   "lint-staged": {
     "*.{ts,vue}": [
