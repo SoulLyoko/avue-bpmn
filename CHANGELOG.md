@@ -1,3 +1,13 @@
+## [0.2.1](https://github.com/SoulLyoko/avue-bpmn/compare/v0.2.0...v0.2.1) (2022-08-31)
+
+
+### Bug Fixes
+
+* remove idColumn readonly ([db8ef6a](https://github.com/SoulLyoko/avue-bpmn/commit/db8ef6ae615e98393e5ec9eb62671afd41f10f70))
+* update default xml ([02253bb](https://github.com/SoulLyoko/avue-bpmn/commit/02253bb41b6b48351f19d272777e9275fede9a9d))
+
+
+
 # 0.2.0 (2022-08-29)
 
 
