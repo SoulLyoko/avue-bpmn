@@ -21,19 +21,20 @@ export const flowTypeColumn: BpmnFormColumnItem = {
     }
   },
   updateProperties({ formData, element, moddle, modeling }) {
+    const ele = element.value as Connection;
+    if (ele.source.type === "bpmn:StartEvent") return;
     const { flowType, id } = formData.value;
     if (flowType === "conditional") {
       const conditionExpression = moddle.value?.create("bpmn:FormalExpression");
-      modeling.value?.updateProperties(element.value!, { conditionExpression });
+      modeling.value?.updateProperties(ele!, { conditionExpression });
       formData.value.conditionExpression = formData.value.conditionExpression || `$\{condition=="${id}"}`;
     } else if (flowType === "default") {
-      modeling.value?.updateProperties(element.value!, { conditionExpression: null });
-      modeling.value?.updateProperties((element.value as Connection).source, { default: element.value });
+      modeling.value?.updateProperties(ele.source, { default: ele });
+      modeling.value?.updateProperties(ele!, { conditionExpression: undefined });
       formData.value.conditionExpression = "";
     } else {
-      modeling.value?.updateProperties(element.value!, { conditionExpression: null });
-      modeling.value?.updateProperties((element.value as Connection).source, { default: element.value });
-      modeling.value?.updateProperties((element.value as Connection).source, { default: null });
+      modeling.value?.updateProperties(ele.source, { default: undefined });
+      modeling.value?.updateProperties(ele!, { conditionExpression: undefined });
       formData.value.conditionExpression = "";
     }
   }
