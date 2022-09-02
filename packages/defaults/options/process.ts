@@ -6,7 +6,18 @@ import { BpmnSelect } from "~/components/bpmn-select";
 export const processIdColumn: BpmnFormColumnItem = { ...idColumn, label: "流程标识" };
 export const processNameColumn: BpmnFormColumnItem = { ...nameColumn, label: "流程名称" };
 export const processDocumentationColumn: BpmnFormColumnItem = { ...documentationColumn, label: "流程描述" };
-export const processCategoryColumn: BpmnFormColumnItem = { label: "流程分类", prop: "category" };
+export const processCategoryColumn: BpmnFormColumnItem = {
+  label: "流程分类",
+  prop: "category",
+  updateFormData({ formData, businessObject }) {
+    const { category } = businessObject;
+    formData.value.category = category || "";
+  },
+  updateProperties({ formData, element, modeling }) {
+    const { category } = formData.value;
+    modeling.value?.updateProperties(element.value!, { category: category || undefined });
+  }
+};
 export const processIconColumn: BpmnFormColumnItem = { label: "图标", prop: "icon" };
 export const processSkipFirstNodeColumn: BpmnFormColumnItem = {
   label: "跳过第一节点",
