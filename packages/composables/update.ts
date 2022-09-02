@@ -18,9 +18,9 @@ export function useUpdateColumn(state: BpmnState) {
     formOption.value.column = [...buildColumn(formOption.value.group)];
     formRef.value?.resetForm();
     await nextTick();
-    updateFormData(state);
-    await nextTick();
     updateProperties(state, watchers);
+    await nextTick();
+    updateFormData(state);
   });
   watch(() => [element, props.formOptions], watchDebounce, { deep: true });
 }
@@ -61,7 +61,7 @@ export function updateProperties(state: BpmnState, watchers: UpdateWatchers) {
           });
         }
       },
-      { deep: true, immediate: true }
+      { deep: true }
     );
     watchers.set(col.prop!, stop);
   });

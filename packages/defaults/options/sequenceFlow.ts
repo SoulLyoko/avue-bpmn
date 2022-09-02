@@ -1,9 +1,9 @@
 import type { Connection } from "diagram-js/lib/model";
 import type { BpmnFormColumnItem } from "~/types";
 
-export const sequenceFlowTypeColumn: BpmnFormColumnItem = {
+export const flowTypeColumn: BpmnFormColumnItem = {
   label: "流类型",
-  prop: "sequenceFlowType",
+  prop: "flowType",
   type: "select",
   dicData: [
     { label: "序列流", value: "sequence" },
@@ -13,27 +13,28 @@ export const sequenceFlowTypeColumn: BpmnFormColumnItem = {
   updateFormData({ formData, businessObject }) {
     const { conditionExpression } = businessObject;
     if (conditionExpression) {
-      formData.value.sequenceFlowType = "conditional";
+      formData.value.flowType = "conditional";
     } else if (businessObject.sourceRef.default) {
-      formData.value.sequenceFlowType = "default";
+      formData.value.flowType = "default";
     } else {
-      formData.value.sequenceFlowType = "sequence";
+      formData.value.flowType = "sequence";
     }
   },
   updateProperties({ formData, element, moddle, modeling }) {
-    const { sequenceFlowType, id } = formData.value;
-    if (sequenceFlowType === "conditional") {
+    const { flowType, id } = formData.value;
+    if (flowType === "conditional") {
       const conditionExpression = moddle.value?.create("bpmn:FormalExpression");
       modeling.value?.updateProperties(element.value!, { conditionExpression });
       formData.value.conditionExpression = formData.value.conditionExpression || `$\{condition=="${id}"}`;
-    } else if (sequenceFlowType === "default") {
-      formData.value.conditionExpression = "";
+    } else if (flowType === "default") {
       modeling.value?.updateProperties(element.value!, { conditionExpression: null });
       modeling.value?.updateProperties((element.value as Connection).source, { default: element.value });
-    } else {
       formData.value.conditionExpression = "";
+    } else {
       modeling.value?.updateProperties(element.value!, { conditionExpression: null });
+      modeling.value?.updateProperties((element.value as Connection).source, { default: element.value });
       modeling.value?.updateProperties((element.value as Connection).source, { default: null });
+      formData.value.conditionExpression = "";
     }
   }
 };
@@ -58,4 +59,4 @@ export const conditionExpressionColumn: BpmnFormColumnItem = {
   }
 };
 
-export const sequenceFlowColumns = [sequenceFlowTypeColumn, conditionExpressionColumn];
+export const sequenceFlowColumns = [flowTypeColumn, conditionExpressionColumn];

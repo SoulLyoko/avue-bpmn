@@ -24,7 +24,7 @@ export const defaultFormData = {
   class: "",
   async: "",
   elementVariable: "",
-  sequenceFlowType: "",
+  flowType: "",
   conditionExpression: "",
   skipExpression: "",
   assignee: [] as AssigneeItem[],
