@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.0...v0.3.1) (2022-09-02)
+
+
+### Bug Fixes
+
+* flowTypeColumn updateProperties function ([79347f9](https://github.com/SoulLyoko/avue-bpmn/commit/79347f992ee06f0699707db6c329774335d070e7))
+
+
+
 # [0.3.0](https://github.com/SoulLyoko/avue-bpmn/compare/v0.2.1...v0.3.0) (2022-09-02)
 
 
