@@ -3,6 +3,7 @@ import path from "path";
 import { defineConfig } from "vite";
 import fs from "fs-extra";
 import { isVue2 } from "vue-demi";
+import bpmnlint from "rollup-plugin-bpmnlint";
 
 import pkg from "./package.json";
 import { getVueVersion } from "./scripts/utils";
@@ -21,7 +22,10 @@ export default defineConfig(async ({ mode }) => {
     lodash: "_",
     "lodash-es": "_",
     "lodash-unified": "_",
-    "bpmn-js/lib/Modeler": "Modeler",
+    "bpmn-js/lib/Modeler": "BpmnJS",
+    "bpmn-js-token-simulation": "BpmnJSTokenSimulation",
+    "bpmn-js-bpmnlint": "BpmnJSBpmnlint",
+    "diagram-js-minimap": "DiagramJSMinimap",
     "file-saver": "FileSaver"
   };
   const external = Object.keys(globals);
@@ -31,7 +35,7 @@ export default defineConfig(async ({ mode }) => {
     fs.removeSync("lib");
   }
   return {
-    plugins: [vuePlugin],
+    plugins: [vuePlugin, bpmnlint()],
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "src"),

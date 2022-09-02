@@ -1,17 +1,15 @@
 import type { PropType } from "vue-demi";
-import type { PropTypes, EmitFn, BpmnFormGroupItem } from "~/types";
+import type Modeler from "bpmn-js/lib/Modeler";
 import type { Base, ViewerOptions } from "diagram-js/lib/model";
 import type { AvueFormInstance } from "@smallwei/avue";
+import type { PropTypes, EmitFn, BpmnFormGroupItem } from "~/types";
 
 import { defineComponent, onMounted, provide, isVue2 } from "vue-demi";
-import Modeler from "bpmn-js/lib/Modeler";
-import { uniqueId, merge } from "lodash-unified";
+import { uniqueId } from "lodash-unified";
 
 import { h, slot, dynamicComponent } from "~/utils";
 import { BpmnTools } from "~/components/bpmn-tools";
-import { useBpmnState, useUpdateColumn, useModelerListener, useMethods } from "~/composables";
-import customModules from "~/modules";
-import customExtensions from "~/extensions";
+import { useInitModeler, useBpmnState, useUpdateColumn, useModelerListener, useMethods } from "~/composables";
 
 export type ModelerProps = PropTypes<typeof modelerProps>;
 export type ModelerEmits = typeof modelerEmits;
@@ -25,8 +23,17 @@ export const modelerProps = {
   prefix: { type: String as PropType<"activiti" | "camunda" | "flowable" | "bpmn">, default: "bpmn" },
   size: { type: String, default: isVue2 ? "small" : "default" },
   formWidth: { type: String, default: "30%" },
-  formOptions: { type: Object as PropType<Record<string, BpmnFormGroupItem[]>> },
-  initOptions: { type: Object as PropType<ViewerOptions>, default: () => ({}) }
+  formOptions: { type: Object as PropType<Record<string, BpmnFormGroupItem[]>>, default: () => ({}) },
+  initOptions: {
+    type: Object as PropType<
+      ViewerOptions & {
+        simulation?: boolean;
+        linting?: { bpmnlint: any };
+        minimap?: boolean;
+      }
+    >,
+    default: () => ({})
+  }
 };
 
 export const modelerEmits = {
@@ -43,34 +50,17 @@ export const BpmnModeler = defineComponent({
   emits: modelerEmits,
   setup(props, { emit, slots }) {
     const state = useBpmnState({ props, emit });
-    const { modeler, modeling, moddle, elementRegistry, formData, formOption, formRef } = state;
+    const { modeler, formData, formOption, formRef } = state;
     provide("bpmnState", state);
 
     const { importXML } = useMethods(state.modeler);
+    const bpmnCanvasId = uniqueId("bpmn-canvas");
     onMounted(() => {
-      initModeler();
+      useInitModeler({ props, state, emit, bpmnCanvasId });
       useModelerListener({ state, emit });
       useUpdateColumn(state);
       props.xml && importXML(props.xml);
     });
-
-    const bpmnCanvasId = uniqueId("bpmn-canvas");
-    async function initModeler() {
-      modeler.value = new Modeler(
-        merge(
-          {
-            container: document.getElementById(bpmnCanvasId)!,
-            additionalModules: [customModules],
-            moddleExtensions: { [props.prefix]: customExtensions[props.prefix] }
-          },
-          props.initOptions
-        )
-      );
-      modeling.value = modeler.value?.get("modeling");
-      moddle.value = modeler.value?.get("moddle");
-      elementRegistry.value = modeler.value?.get("elementRegistry");
-      emit("update:modeler", modeler.value);
-    }
 
     const AvueForm = dynamicComponent("avue-form");
     return () =>

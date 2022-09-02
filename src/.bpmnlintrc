@@ -1,0 +1,7 @@
+{
+  "extends": "bpmnlint:recommended",
+  "rules": {
+    "label-required": "error",
+    "no-disconnected": "error"
+  }
+}

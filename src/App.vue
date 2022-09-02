@@ -3,6 +3,7 @@
     v-model="formData"
     :xml="processData.xml"
     :form-options="formOptions"
+    :init-options="initOptions"
     prefix="flowable"
     @update:modeler="modeler = $event"
     @update:element="element = $event"
@@ -11,12 +12,12 @@
     @update:model-value="onUpdateFormData"
   >
     <template #bpmn-tools>
-      <el-input
+      <!-- <el-input
         type="textarea"
         :value="JSON.stringify(formData, null, 2)"
         rows="10"
         style="width: 300px; vertical-align: top"
-      ></el-input>
+      ></el-input> -->
     </template>
   </BpmnModeler>
 </template>
@@ -29,11 +30,16 @@ import { defineComponent, ref, shallowRef } from "vue-demi";
 
 import { BpmnModeler, defaultXml, useOptions, defaultFormData } from "../packages";
 import "../packages/styles/bpmn-modeler.scss";
+import bpmnlintConfig from "./.bpmnlintrc";
 
 export default defineComponent({
   name: "App",
   components: { BpmnModeler },
   setup() {
+    const initOptions = {
+      linting: { bpmnlint: bpmnlintConfig }
+    };
+
     const formData = ref(defaultFormData);
     const processData = ref<any>({
       xml: defaultXml()
@@ -127,6 +133,7 @@ export default defineComponent({
     }, 1000);
 
     return {
+      initOptions,
       formData,
       processData,
       modeler,

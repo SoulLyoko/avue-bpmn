@@ -694,3 +694,4 @@ declare module "bpmn-js/lib/features/modeling" {
 
 declare module "bpmn-js-token-simulation" {}
 declare module "bpmn-js-bpmnlint" {}
+declare module "diagram-js-minimap" {}

@@ -252,5 +252,8 @@ export default {
   "Incoming flows do not join": "可能需要统一的入口",
   "Element is not connected": "元素未连接",
   Errors: "错误",
-  Warnings: "警告"
+  Warnings: "警告",
+  "Token Simulation": "流程模拟",
+  "Open minimap": "▲",
+  "Close minimap": "╳"
 };
