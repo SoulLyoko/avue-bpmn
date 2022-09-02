@@ -1,3 +1,18 @@
+# [0.3.0](https://github.com/SoulLyoko/avue-bpmn/compare/v0.2.1...v0.3.0) (2022-09-02)
+
+
+### Bug Fixes
+
+* processCategoryColumn update fn ([f731b9c](https://github.com/SoulLyoko/avue-bpmn/commit/f731b9cba8986cf04d9c471ac54261a3075445c7))
+* sequenceFlowTypeColumn updateProperties Fn ([d15f543](https://github.com/SoulLyoko/avue-bpmn/commit/d15f5438a26a79dfbe2d210d259387ff345a870d))
+
+
+### Features
+
+* tokenSimulation,bpmnlint,minimap ([ab16ff6](https://github.com/SoulLyoko/avue-bpmn/commit/ab16ff628879f7f1c5ffbb7acdc60098cc41158c))
+
+
+
 ## [0.2.1](https://github.com/SoulLyoko/avue-bpmn/compare/v0.2.0...v0.2.1) (2022-08-31)
 
 
