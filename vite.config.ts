@@ -23,7 +23,12 @@ export default defineConfig(async ({ mode }) => {
     "lodash-es": "_",
     "lodash-unified": "_",
     "bpmn-js/lib/Modeler": "BpmnJS",
+    "bpmn-js/lib/Viewer": "BpmnJS",
+    "diagram-js/lib/navigation/movecanvas": "Movecanvas",
+    "diagram-js/lib/navigation/zoomscroll": "Zoomscroll",
     "bpmn-js-token-simulation": "BpmnJSTokenSimulation",
+    "bpmn-js/lib/features/modeling": "Modeling",
+    "diagram-js/lib/features/tooltips": "Tooltips",
     "bpmn-js-bpmnlint": "BpmnJSBpmnlint",
     "diagram-js-minimap": "DiagramJSMinimap",
     "file-saver": "FileSaver"
