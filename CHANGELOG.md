@@ -1,3 +1,12 @@
+## [0.3.4](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.3...v0.3.4) (2022-09-05)
+
+
+### Features
+
+* **bpmn-viewer:** support colors and tooltips ([3fc9bc7](https://github.com/SoulLyoko/avue-bpmn/commit/3fc9bc7a7eecd4911565df8b1c542f1b693450dd))
+
+
+
 ## [0.3.3](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.2...v0.3.3) (2022-09-05)
 
 
