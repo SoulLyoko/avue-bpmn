@@ -1261,8 +1261,25 @@ declare module "diagram-js/lib/command/CommandStack" {
 /// Tooltips
 
 declare module "diagram-js/lib/features/tooltips" {
-  import { DJSModule } from "diagram-js";
+  export default class Tooltips {
+    constructor(eventBus: EventBus, canvas: Canvas);
 
-  const tooltipsModule: DJSModule;
-  export default tooltipsModule;
+    add(tooltip: {
+      html: string;
+      position: {
+        x?: number;
+        y?: number;
+        left?: number;
+        top?: number;
+        bottom?: number;
+        right?: number;
+      };
+      show?: { minZoom?: number; maxZoom?: number };
+      timeout?: number;
+    }): string;
+    get(id: string): void;
+    remove(id: string): void;
+    show(): void;
+    hide(): void;
+  }
 }
