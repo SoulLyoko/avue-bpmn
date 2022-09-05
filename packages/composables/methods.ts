@@ -1,12 +1,13 @@
 import type { Ref } from "vue-demi";
 import type Modeler from "bpmn-js/lib/Modeler";
+import type Viewer from "bpmn-js/lib/Viewer";
 
 import { computed, isRef } from "vue-demi";
 import { saveAs } from "file-saver";
 
 type MaybeRef<T> = Ref<T> | T;
 
-export function useMethods(m: MaybeRef<Modeler | undefined>) {
+export function useMethods(m: MaybeRef<Modeler | Viewer | undefined>) {
   const modeler = computed(() => (isRef(m) ? m.value : m));
   /** 导入XML */
   async function importXML(xml: string) {

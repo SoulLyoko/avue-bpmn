@@ -20,6 +20,7 @@
       ></el-input> -->
     </template>
   </BpmnModeler>
+  <BpmnViewer :xml="processData.xml"></BpmnViewer>
 </template>
 
 <script lang="ts">
@@ -28,13 +29,14 @@ import type { Base } from "diagram-js/lib/model";
 
 import { defineComponent, ref, shallowRef } from "vue-demi";
 
-import { BpmnModeler, defaultXml, useOptions, defaultFormData } from "../packages";
+import { BpmnModeler, BpmnViewer, defaultXml, useOptions, defaultFormData } from "../packages";
 import "../packages/styles/bpmn-modeler.scss";
+import "../packages/styles/bpmn-viewer.scss";
 import bpmnlintConfig from "./.bpmnlintrc";
 
 export default defineComponent({
   name: "App",
-  components: { BpmnModeler },
+  components: { BpmnModeler, BpmnViewer },
   setup() {
     const initOptions = {
       linting: { bpmnlint: bpmnlintConfig }

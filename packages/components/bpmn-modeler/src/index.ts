@@ -28,7 +28,7 @@ export const modelerProps = {
     type: Object as PropType<
       ViewerOptions & {
         simulation?: boolean;
-        linting?: { bpmnlint: any };
+        linting?: { bpmnlint?: any };
         minimap?: boolean;
       }
     >,
@@ -54,7 +54,7 @@ export const BpmnModeler = defineComponent({
     provide("bpmnState", state);
 
     const { importXML } = useMethods(state.modeler);
-    const bpmnCanvasId = uniqueId("bpmn-canvas");
+    const bpmnCanvasId = uniqueId("bpmn-modeler-canvas");
     onMounted(() => {
       useInitModeler({ props, state, emit, bpmnCanvasId });
       useModelerListener({ state, emit });
