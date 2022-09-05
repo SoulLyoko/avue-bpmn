@@ -1,3 +1,12 @@
+## [0.3.3](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.2...v0.3.3) (2022-09-05)
+
+
+### Bug Fixes
+
+* build mistake ([b2180ae](https://github.com/SoulLyoko/avue-bpmn/commit/b2180ae55d3f3d25cbd5bb3a606d3efd620963cd))
+
+
+
 ## [0.3.2](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.1...v0.3.2) (2022-09-05)
 
 
