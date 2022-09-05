@@ -9,9 +9,7 @@ import type { AvueFormInstance } from "@smallwei/avue";
 
 import { ref, watch, shallowRef, isVue2 } from "vue-demi";
 
-export type UseBpmnStateReturn = ReturnType<typeof useBpmnState>;
-
-export function useBpmnState({ props, emit }: { props: ModelerProps; emit: ModelerEmitFn }) {
+export function useModelerState({ props, emit }: { props: ModelerProps; emit: ModelerEmitFn }) {
   const modeler = shallowRef<Modeler>();
   const modeling = shallowRef<Modeling>();
   const moddle = shallowRef<Moddle>();

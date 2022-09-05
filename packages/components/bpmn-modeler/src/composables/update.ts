@@ -1,4 +1,4 @@
-import type { BpmnState, BpmnFormGroupItem } from "~/types";
+import type { ModelerState, BpmnFormGroupItem } from "~/types";
 import type { WatchStopHandle } from "vue-demi";
 
 import { watch, nextTick } from "vue-demi";
@@ -8,7 +8,7 @@ import { defaultGroup } from "~/defaults";
 
 export type UpdateWatchers = Map<string, WatchStopHandle>;
 
-export function useUpdateColumn(state: BpmnState) {
+export function useUpdateColumn(state: ModelerState) {
   const watchers: UpdateWatchers = new Map();
   const { element, formOption, formRef, props } = state;
   const watchDebounce = debounce(async () => {
@@ -32,7 +32,7 @@ export function buildColumn(groups: BpmnFormGroupItem[]) {
     .map(e => ({ ...e, display: false }));
 }
 
-export function updateFormData(state: BpmnState) {
+export function updateFormData(state: ModelerState) {
   const { element, formOption, formData, prefix } = state;
   const { businessObject } = element.value ?? {};
   const { $attrs } = businessObject ?? {};
@@ -45,7 +45,7 @@ export function updateFormData(state: BpmnState) {
   });
 }
 
-export function updateProperties(state: BpmnState, watchers: UpdateWatchers) {
+export function updateProperties(state: ModelerState, watchers: UpdateWatchers) {
   const { element, formOption, formData, modeling, prefix } = state;
   formOption.value.column.forEach(col => {
     const stop = watch(

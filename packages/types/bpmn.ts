@@ -1,9 +1,9 @@
 import type { BpmnBaseElement } from "bpmn-js";
 import type { FormOption, FormColumn, FormGroup } from "@smallwei/avue";
 import type { defaultFormData } from "~/defaults";
-import type { UseBpmnStateReturn } from "~/composables/state";
+import type { useModelerState } from "~/components/bpmn-modeler/src/composables/state";
 
-export type BpmnState = UseBpmnStateReturn;
+export type ModelerState = ReturnType<typeof useModelerState>;
 
 export type BpmnFormOption = Omit<FormOption, "column" | "group"> & {
   column: BpmnFormColumnItem[];
@@ -11,8 +11,8 @@ export type BpmnFormOption = Omit<FormOption, "column" | "group"> & {
 };
 export type BpmnFormData = Partial<typeof defaultFormData> & Record<string, any>;
 export interface BpmnFormColumnItem extends FormColumn {
-  updateFormData?(state: BpmnState & { businessObject: BpmnBaseElement; $attrs: Record<string, any> }): void;
-  updateProperties?(state: BpmnState & { businessObject: BpmnBaseElement; $attrs: Record<string, any> }): void;
+  updateFormData?(state: ModelerState & { businessObject: BpmnBaseElement; $attrs: Record<string, any> }): void;
+  updateProperties?(state: ModelerState & { businessObject: BpmnBaseElement; $attrs: Record<string, any> }): void;
 }
 export interface BpmnFormGroupItem extends FormGroup {
   column?: BpmnFormColumnItem[];

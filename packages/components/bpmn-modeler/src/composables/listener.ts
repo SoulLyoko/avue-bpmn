@@ -1,9 +1,9 @@
-import type { BpmnState } from "~/types";
+import type { ModelerState } from "~/types";
 import type { ModelerEmitFn } from "..";
 
 import { nextTick } from "vue-demi";
 
-export function useModelerListener({ state, emit }: { state: BpmnState; emit: ModelerEmitFn }) {
+export function useModelerListener({ state, emit }: { state: ModelerState; emit: ModelerEmitFn }) {
   const { modeler, elementRegistry, element } = state;
   const selectionChanged = async (e: any) => {
     element.value = undefined;

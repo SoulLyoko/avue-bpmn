@@ -1,7 +1,7 @@
-import type { BpmnState } from "~/types";
+import type { ModelerState } from "~/types";
 
 import { inject } from "vue-demi";
 
 export function useInject() {
-  return inject<BpmnState>("bpmnState")!;
+  return inject<ModelerState>("modelerState")!;
 }

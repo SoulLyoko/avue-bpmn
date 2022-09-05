@@ -1,11 +1,11 @@
 import type { BpmnBaseElement } from "bpmn-js";
 import type { ModdleElement } from "diagram-js/lib/model";
-import type { BpmnState } from "~/types";
+import type { ModelerState } from "~/types";
 import type { ListenerItem } from "~/defaults/options";
 
 import { upperFirst, lowerFirst } from "lodash-unified";
 
-export function updateExtensionElements(state: BpmnState, type: string, elements: ModdleElement[] = []) {
+export function updateExtensionElements(state: ModelerState, type: string, elements: ModdleElement[] = []) {
   const { element, moddle, modeling, prefix } = state;
   const { businessObject } = element.value!;
   const otherExtensionElements = businessObject?.extensionElements?.values?.filter(e => e.$type !== prefix(type)) ?? [];
@@ -16,7 +16,7 @@ export function updateExtensionElements(state: BpmnState, type: string, elements
   });
 }
 
-export function updateListenerFormData(state: BpmnState, type: `${string}Listener`) {
+export function updateListenerFormData(state: ModelerState, type: `${string}Listener`) {
   const { element, formData, prefix } = state;
   const { businessObject } = element.value!;
   const values = (businessObject as BpmnBaseElement)?.extensionElements?.values ?? [];
@@ -41,7 +41,7 @@ export function updateListenerFormData(state: BpmnState, type: `${string}Listene
   });
 }
 
-export function updateListenerProperties(state: BpmnState, type: `${string}Listener`) {
+export function updateListenerProperties(state: ModelerState, type: `${string}Listener`) {
   const { moddle, formData, prefix } = state;
   const listenerList: ListenerItem[] = formData.value[lowerFirst(type)] || [];
   const listenerElements = listenerList.map(listenerItem => {

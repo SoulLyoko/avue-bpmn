@@ -9,7 +9,8 @@ import { uniqueId } from "lodash-unified";
 
 import { h, slot, dynamicComponent } from "~/utils";
 import { BpmnTools } from "~/components/bpmn-tools";
-import { useInitModeler, useBpmnState, useUpdateColumn, useModelerListener, useMethods } from "~/composables";
+import { useMethods } from "~/composables";
+import { useInitModeler, useModelerState, useUpdateColumn, useModelerListener } from "./composables";
 
 export type ModelerProps = PropTypes<typeof modelerProps>;
 export type ModelerEmits = typeof modelerEmits;
@@ -49,9 +50,9 @@ export const BpmnModeler = defineComponent({
   props: modelerProps,
   emits: modelerEmits,
   setup(props, { emit, slots }) {
-    const state = useBpmnState({ props, emit });
+    const state = useModelerState({ props, emit });
     const { modeler, formData, formOption, formRef } = state;
-    provide("bpmnState", state);
+    provide("modelerState", state);
 
     const { importXML } = useMethods(state.modeler);
     const bpmnCanvasId = uniqueId("bpmn-modeler-canvas");

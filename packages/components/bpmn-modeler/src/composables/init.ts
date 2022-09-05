@@ -1,4 +1,5 @@
-import type { BpmnState, ModelerProps, ModelerEmitFn } from "..";
+import type { ModelerState } from "~/types";
+import type { ModelerProps, ModelerEmitFn } from "..";
 
 import Modeler from "bpmn-js/lib/Modeler";
 import tokenSimulationModule from "bpmn-js-token-simulation";
@@ -14,7 +15,7 @@ export function useInitModeler({
   emit,
   bpmnCanvasId
 }: {
-  state: BpmnState;
+  state: ModelerState;
   props: ModelerProps;
   emit: ModelerEmitFn;
   bpmnCanvasId: string;
