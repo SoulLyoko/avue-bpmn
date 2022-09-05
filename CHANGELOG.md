@@ -1,3 +1,12 @@
+## [0.3.2](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.1...v0.3.2) (2022-09-05)
+
+
+### Features
+
+* bpmn-viewer ([d02bf05](https://github.com/SoulLyoko/avue-bpmn/commit/d02bf051a2963a6e611496b442407e5178a311e7))
+
+
+
 ## [0.3.1](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.0...v0.3.1) (2022-09-02)
 
 
