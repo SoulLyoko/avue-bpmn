@@ -1,17 +1,33 @@
 <template>
-  <BpmnModeler v-model="formData" v-model:xml="xml" :form-options="options" prefix="flowable" style="height: 500px">
+  <component
+    is="BpmnModeler"
+    v-model="formData"
+    v-model:xml="xml"
+    :form-options="options"
+    prefix="flowable"
+    style="height: 500px"
+  >
     <template #bpmn-tools>
       <el-button type="primary" size="default" @click="updateCategory">
         更新流程分类(更新后需手动点击一次图形)
       </el-button>
     </template>
-  </BpmnModeler>
+  </component>
+  <!-- <BpmnModeler v-model="formData" v-model:xml="xml" :form-options="options" prefix="flowable" style="height: 500px">
+    <template #bpmn-tools>
+      <el-button type="primary" size="default" @click="updateCategory">
+        更新流程分类(更新后需手动点击一次图形)
+      </el-button>
+    </template>
+  </BpmnModeler> -->
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { BpmnModeler, defaultXml, useOptions } from "avue-bpmn";
-import "avue-bpmn/styles/bpmn-modeler.scss";
+import { defaultXml } from "avue-bpmn/defaults/xml";
+import { useOptions } from "avue-bpmn/composables/options";
+// import { BpmnModeler, defaultXml, useOptions } from "avue-bpmn";
+// import "avue-bpmn/styles/bpmn-modeler.scss";
 
 const formData = ref({});
 const xml = ref(defaultXml());

@@ -1,12 +1,12 @@
 <template>
-  <BpmnViewer :xml="xml" :data="viewerData" style="height: 400px"></BpmnViewer>
+  <component is="BpmnViewer" :xml="xml" :data="viewerData" style="height: 400px"></component>
+  <!-- <BpmnViewer :xml="xml" :data="viewerData" style="height: 400px"></BpmnViewer> -->
 </template>
 
 <script setup lang="ts">
-import { BpmnViewer } from "avue-bpmn";
-import "avue-bpmn/styles/bpmn-viewer.scss";
-
 import xml from "./xml";
+// import { BpmnViewer } from "avue-bpmn";
+// import "avue-bpmn/styles/bpmn-viewer.scss";
 
 const viewerData = [
   { elementId: "Event_mqvUhUn", colors: { fill: "lightgreen", stroke: "black" } },

@@ -6,7 +6,8 @@
     "paths": {
       "@/*": ["src/*"],
       "~/*": ["packages/*"],
-      "avue-bpmn": ["packages"]
+      "avue-bpmn": ["packages"],
+      "avue-bpmn/*": ["packages/*"]
     },
     "types": ["vitest/globals"]
   },

@@ -1,17 +1,26 @@
 <template>
-  <BpmnModeler
+  <component
+    is="BpmnModeler"
     v-model="formData"
     :form-options="options"
     :init-options="initOptions"
     prefix="flowable"
     style="height: 400px"
-  ></BpmnModeler>
+  ></component>
+  <!-- <BpmnModeler
+    v-model="formData"
+    :form-options="options"
+    :init-options="initOptions"
+    prefix="flowable"
+    style="height: 400px"
+  ></BpmnModeler> -->
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { BpmnModeler, processIdColumn, processNameColumn, baseColumns } from "avue-bpmn";
-import "avue-bpmn/styles/bpmn-modeler.scss";
+import { processIdColumn, processNameColumn, baseColumns } from "avue-bpmn/defaults/options";
+// import { BpmnModeler, processIdColumn, processNameColumn, baseColumns } from "avue-bpmn";
+// import "avue-bpmn/es/styles/bpmn-modeler.scss";
 
 const formData = ref({});
 const initOptions = { simulation: false, minimap: false };

@@ -1,7 +1,7 @@
 # BpmnViewer
 
 ::: tip
-示例中的样式文件正确用法是 `import "avue-bpmn/es/styles/bpmn-viewer.css"`
+示例代码由于文档 ssr 的问题,导致组件的写法有些奇怪,使用时按照正常的写法(注释的代码)即可.
 :::
 
 ## Basic

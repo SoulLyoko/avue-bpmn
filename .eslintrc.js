@@ -34,6 +34,7 @@ module.exports = {
     "vue/require-explicit-emits": 0,
     "vue/require-default-prop": 0,
     "vue/multi-word-component-names": 0,
+    "vue/require-component-is": 0,
     "import/no-unresolved": 0,
     "import/order": [
       "warn",
