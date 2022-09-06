@@ -1,3 +1,12 @@
+## [0.3.5](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.4...v0.3.5) (2022-09-06)
+
+
+### Bug Fixes
+
+* listen modeler events with debounce ([2d7dde9](https://github.com/SoulLyoko/avue-bpmn/commit/2d7dde924e627da2ee5943fafbae0561af1fcb2c))
+
+
+
 ## [0.3.4](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.3...v0.3.4) (2022-09-05)
 
 
