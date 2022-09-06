@@ -21,7 +21,7 @@ export function useUpdateColumn(state: ModelerState) {
     updateProperties(state, watchers);
     await nextTick();
     updateFormData(state);
-  });
+  }, 100);
   watch(() => [element, props.formOptions], watchDebounce, { deep: true });
 }
 
