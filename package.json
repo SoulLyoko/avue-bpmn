@@ -2,7 +2,7 @@
   "name": "avue-bpmn",
   "version": "0.3.4",
   "upperName": "AvueBpmn",
-  "description": "avue-bpmn",
+  "description": "Configurable bpmnjs vue components",
   "author": "SoulLyoko <519052532@qq.com>",
   "repository": "https://github.com/SoulLyoko/avue-bpmn.git",
   "homepage": "https://github.com/SoulLyoko/avue-bpmn#readme",

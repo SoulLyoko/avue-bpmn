@@ -5,6 +5,7 @@ import type { useModelerState } from "~/components/bpmn-modeler/src/composables/
 
 export type ModelerState = ReturnType<typeof useModelerState>;
 
+// #region BpmnTypes
 export type BpmnFormOption = Omit<FormOption, "column" | "group"> & {
   column: BpmnFormColumnItem[];
   group: BpmnFormGroupItem[];
@@ -18,3 +19,4 @@ export interface BpmnFormGroupItem extends FormGroup {
   column?: BpmnFormColumnItem[];
 }
 export type BpmnFormOptions = Record<string, BpmnFormGroupItem[]>;
+// #endregion BpmnTypes

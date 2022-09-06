@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress";
 import path from "path";
+import bpmnlint from "rollup-plugin-bpmnlint";
 import { mdDemoTransform } from "./plugins/md-demo-transform";
 import pkg from "../../package.json";
 
@@ -11,8 +12,8 @@ const Components = [
   {
     text: "Components",
     children: [
-      { text: "Button", link: "/components/button/demo/index" },
-      { text: "Input", link: "/components/input/demo/index" }
+      { text: "BpmnModeler", link: "/components/bpmn-modeler/demo/index" },
+      { text: "BpmnViewer", link: "/components/bpmn-viewer/demo/index" }
     ]
   }
 ];
@@ -35,7 +36,7 @@ export default defineConfig({
     }
   },
   vite: {
-    plugins: [mdDemoTransform() as any],
+    plugins: [mdDemoTransform(), bpmnlint()],
     resolve: {
       alias: {
         "@": path.join(__dirname, "../../src"),
