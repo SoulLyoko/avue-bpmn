@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>BpmnModeler | AvueBpmn</title>
+    <meta name="description" content="Configurable bpmnjs vue components">
+    <link rel="stylesheet" href="/avue-bpmn/assets/style.4d4d39d8.css">
+    <link rel="modulepreload" href="/avue-bpmn/assets/chunks/CHANGELOG.0b0adeb6.js">
+    <link rel="modulepreload" href="/avue-bpmn/assets/chunks/README.00fcf834.js">
+    <link rel="modulepreload" href="/avue-bpmn/assets/index.md.bea60f1e.js">
+    <link rel="modulepreload" href="/avue-bpmn/assets/guide_changelog.md.006698bd.js">
+    <link rel="modulepreload" href="/avue-bpmn/assets/guide_start.md.027b5e9e.js">
+    <link rel="modulepreload" href="/avue-bpmn/assets/components_bpmn-modeler_demo_index.md.98c7c649.js">
+    <link rel="modulepreload" href="/avue-bpmn/assets/components_bpmn-viewer_demo_index.md.c16abde6.js">
+    <link rel="modulepreload" href="/avue-bpmn/assets/chunks/avue.min.f14581ea.js">
+    <link rel="modulepreload" href="/avue-bpmn/assets/chunks/index.62c46762.js">
+    <link rel="modulepreload" href="/avue-bpmn/assets/chunks/index.esm.fd46b5d5.js">
+    <link rel="modulepreload" href="/avue-bpmn/assets/app.52899705.js">
+    <link rel="modulepreload" href="/avue-bpmn/assets/components_bpmn-modeler_demo_index.md.98c7c649.lean.js">
+    
+    <meta name="twitter:title" content="BpmnModeler | AvueBpmn">
+  <meta property="og:title" content="BpmnModeler | AvueBpmn">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme"><header class="nav-bar" data-v-675d8756><div class="sidebar-button" data-v-675d8756><svg class="icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z" class></path></svg></div><a class="nav-bar-title" href="/avue-bpmn/" aria-label="AvueBpmn, back to home" data-v-675d8756 data-v-cc01ef16><!----> AvueBpmn</a><div class="flex-grow" data-v-675d8756></div><div class="nav" data-v-675d8756><nav class="nav-links" data-v-675d8756 data-v-eab3edfe><!--[--><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/avue-bpmn/guide/start" data-v-b8818f8c>Guide <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item active" href="/avue-bpmn/components/bpmn-modeler/demo/index" data-v-b8818f8c>Components <!----></a></div></div><!--]--><!----><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item isExternal" href="https://github.com/SoulLyoko/avue-bpmn" target="_blank" rel="noopener noreferrer" data-v-b8818f8c>GitHub <svg class="icon outbound" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" data-v-b8818f8c><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></div></nav></div><!--[--><!--]--></header><aside class="sidebar" data-v-83e92a68><nav class="nav-links nav" data-v-83e92a68 data-v-eab3edfe><!--[--><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/avue-bpmn/guide/start" data-v-b8818f8c>Guide <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item active" href="/avue-bpmn/components/bpmn-modeler/demo/index" data-v-b8818f8c>Components <!----></a></div></div><!--]--><!----><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item isExternal" href="https://github.com/SoulLyoko/avue-bpmn" target="_blank" rel="noopener noreferrer" data-v-b8818f8c>GitHub <svg class="icon outbound" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" data-v-b8818f8c><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></div></nav><!--[--><!--]--><ul class="sidebar-links" data-v-83e92a68><!--[--><li class="sidebar-link"><p class="sidebar-link-item">Components</p><ul class="sidebar-links"><li class="sidebar-link"><a class="sidebar-link-item" href="/avue-bpmn/components/bpmn-modeler/demo/index">BpmnModeler</a><!----></li><li class="sidebar-link"><a class="sidebar-link-item" href="/avue-bpmn/components/bpmn-viewer/demo/index">BpmnViewer</a><!----></li></ul></li><!--]--></ul><!--[--><!--]--></aside><div class="sidebar-mask"></div><main class="page" data-v-7eddb2c4><div class="container" data-v-7eddb2c4><!--[--><!--]--><div style="position:relative;" class="content" data-v-7eddb2c4><div><h1 id="bpmnmodeler" tabindex="-1">BpmnModeler <a class="header-anchor" href="#bpmnmodeler" aria-hidden="true">#</a></h1><div class="tip custom-block"><p class="custom-block-title">TIP</p><p>示例代码由于文档 ssr 的问题,导致组件的写法有些奇怪,使用时按照正常的写法(注释的代码)即可.</p></div><h2 id="basic" tabindex="-1">Basic <a class="header-anchor" href="#basic" aria-hidden="true">#</a></h2><p><BpmnModeler xml="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;bpmn:definitions
+xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:bpmn=&quot;http://www.omg.org/spec/BPMN/20100524/MODEL&quot;
+xmlns:bpmndi=&quot;http://www.omg.org/spec/BPMN/20100524/DI&quot;
+xmlns:dc=&quot;http://www.omg.org/spec/DD/20100524/DC&quot;
+xmlns:di=&quot;http://www.omg.org/spec/DD/20100524/DI&quot;
+xmlns:flowable=&quot;http://flowable.org/bpmn&quot; 
+xmlns:activiti=&quot;http://activiti.org/bpmn&quot; 
+xmlns:camunda=&quot;http://camunda.org/schema/1.0/bpmn&quot; 
+id=&quot;Definitions_ziCd8JW&quot;
+targetNamespace=&quot;http://bpmn.io/schema/bpmn&quot;&gt;
+  &lt;bpmn:process id=&quot;Process_n1SjTZY&quot; isExecutable=&quot;true&quot;&gt;
+    &lt;bpmn:startEvent id=&quot;Event_13X9jQv&quot; name=&quot;开始&quot;&gt;
+      &lt;bpmn:outgoing&gt;Flow_BdMZ5tq&lt;/bpmn:outgoing&gt;
+    &lt;/bpmn:startEvent&gt;
+    &lt;bpmn:sequenceFlow id=&quot;Flow_BdMZ5tq&quot; sourceRef=&quot;Event_13X9jQv&quot; targetRef=&quot;Activity_y3AqPSy&quot; /&gt;
+    &lt;bpmn:userTask id=&quot;Activity_y3AqPSy&quot; name=&quot;发起人&quot;&gt;
+      &lt;bpmn:incoming&gt;Flow_BdMZ5tq&lt;/bpmn:incoming&gt;
+    &lt;/bpmn:userTask&gt;
+  &lt;/bpmn:process&gt;
+  &lt;bpmndi:BPMNDiagram id=&quot;BPMNDiagram_1&quot;&gt;
+    &lt;bpmndi:BPMNPlane id=&quot;BPMNPlane_1&quot; bpmnElement=&quot;Process_n1SjTZY&quot;&gt;
+      &lt;bpmndi:BPMNEdge id=&quot;Flow_BdMZ5tq_di&quot; bpmnElement=&quot;Flow_BdMZ5tq&quot;&gt;
+        &lt;di:waypoint x=&quot;192&quot; y=&quot;99&quot; /&gt;
+        &lt;di:waypoint x=&quot;250&quot; y=&quot;99&quot; /&gt;
+      &lt;/bpmndi:BPMNEdge&gt;
+      &lt;bpmndi:BPMNShape id=&quot;Event_13X9jQv_di&quot; bpmnElement=&quot;Event_13X9jQv&quot;&gt;
+        &lt;dc:Bounds x=&quot;156&quot; y=&quot;81&quot; width=&quot;36&quot; height=&quot;36&quot; /&gt;
+        &lt;bpmndi:BPMNLabel&gt;
+          &lt;dc:Bounds x=&quot;163&quot; y=&quot;124&quot; width=&quot;22&quot; height=&quot;14&quot; /&gt;
+        &lt;/bpmndi:BPMNLabel&gt;
+      &lt;/bpmndi:BPMNShape&gt;
+      &lt;bpmndi:BPMNShape id=&quot;Activity_y3AqPSy_di&quot; bpmnElement=&quot;Activity_y3AqPSy&quot;&gt;
+        &lt;dc:Bounds x=&quot;250&quot; y=&quot;59&quot; width=&quot;100&quot; height=&quot;80&quot; /&gt;
+        &lt;bpmndi:BPMNLabel /&gt;
+      &lt;/bpmndi:BPMNShape&gt;
+    &lt;/bpmndi:BPMNPlane&gt;
+  &lt;/bpmndi:BPMNDiagram&gt;
+&lt;/bpmn:definitions&gt;" prefix="flowable" style="height:500px;"></BpmnModeler></p><details class="code-details" data-v-475dbe02><summary data-v-475dbe02>View source</summary><!--[--><div class="language-vue"><pre><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>component</span>
+    <span class="token attr-name">is</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>BpmnModeler<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>formData<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name"><span class="token namespace">v-model:</span>xml</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>xml<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name"><span class="token namespace">v-model:</span>modeler</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>modeler<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name"><span class="token namespace">v-model:</span>element</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>element<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">:form-options</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>options<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">:init-options</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>initOption<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">prefix</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>flowable<span class="token punctuation">&quot;</span></span>
+    <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 500px</span><span class="token punctuation">&quot;</span></span></span>
+  <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>component</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- &lt;BpmnModeler
+    v-model=&quot;formData&quot;
+    v-model:xml=&quot;xml&quot;
+    v-model:modeler=&quot;modeler&quot;
+    v-model:element=&quot;element&quot;
+    :form-options=&quot;options&quot;
+    :init-options=&quot;initOption&quot;
+    prefix=&quot;flowable&quot;
+    style=&quot;height: 500px&quot;
+  &gt;&lt;/BpmnModeler&gt; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">setup</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>ts<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ref<span class="token punctuation">,</span> shallowRef <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> defaultXml <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;avue-bpmn/defaults/xml&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> useOptions <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;avue-bpmn/composables/options&quot;</span><span class="token punctuation">;</span>
+<span class="token comment">// import { BpmnModeler, defaultXml, useOptions } from &quot;avue-bpmn&quot;;</span>
+<span class="token comment">// import &quot;avue-bpmn/es/styles/bpmn-modeler.scss&quot;;</span>
+
+<span class="token keyword">import</span> bpmnlintConfig <span class="token keyword">from</span> <span class="token string">&quot;./.bpmnlintrc&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> formData <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> xml <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token function">defaultXml</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> modeler <span class="token operator">=</span> <span class="token function">shallowRef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> element <span class="token operator">=</span> <span class="token function">shallowRef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> options <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> initOption <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">simulation</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token literal-property property">minimap</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token literal-property property">linting</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">bpmnlint</span><span class="token operator">:</span> bpmnlintConfig <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><!--]--></details><h2 id="update-options" tabindex="-1">Update Options <a class="header-anchor" href="#update-options" aria-hidden="true">#</a></h2><p><BpmnModeler xml="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;bpmn:definitions
+xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:bpmn=&quot;http://www.omg.org/spec/BPMN/20100524/MODEL&quot;
+xmlns:bpmndi=&quot;http://www.omg.org/spec/BPMN/20100524/DI&quot;
+xmlns:dc=&quot;http://www.omg.org/spec/DD/20100524/DC&quot;
+xmlns:di=&quot;http://www.omg.org/spec/DD/20100524/DI&quot;
+xmlns:flowable=&quot;http://flowable.org/bpmn&quot; 
+xmlns:activiti=&quot;http://activiti.org/bpmn&quot; 
+xmlns:camunda=&quot;http://camunda.org/schema/1.0/bpmn&quot; 
+id=&quot;Definitions_UxcmIJZ&quot;
+targetNamespace=&quot;http://bpmn.io/schema/bpmn&quot;&gt;
+  &lt;bpmn:process id=&quot;Process_5boZT9f&quot; isExecutable=&quot;true&quot;&gt;
+    &lt;bpmn:startEvent id=&quot;Event_b5nUGzK&quot; name=&quot;开始&quot;&gt;
+      &lt;bpmn:outgoing&gt;Flow_oDA7WAA&lt;/bpmn:outgoing&gt;
+    &lt;/bpmn:startEvent&gt;
+    &lt;bpmn:sequenceFlow id=&quot;Flow_oDA7WAA&quot; sourceRef=&quot;Event_b5nUGzK&quot; targetRef=&quot;Activity_HQQl6Ft&quot; /&gt;
+    &lt;bpmn:userTask id=&quot;Activity_HQQl6Ft&quot; name=&quot;发起人&quot;&gt;
+      &lt;bpmn:incoming&gt;Flow_oDA7WAA&lt;/bpmn:incoming&gt;
+    &lt;/bpmn:userTask&gt;
+  &lt;/bpmn:process&gt;
+  &lt;bpmndi:BPMNDiagram id=&quot;BPMNDiagram_1&quot;&gt;
+    &lt;bpmndi:BPMNPlane id=&quot;BPMNPlane_1&quot; bpmnElement=&quot;Process_5boZT9f&quot;&gt;
+      &lt;bpmndi:BPMNEdge id=&quot;Flow_oDA7WAA_di&quot; bpmnElement=&quot;Flow_oDA7WAA&quot;&gt;
+        &lt;di:waypoint x=&quot;192&quot; y=&quot;99&quot; /&gt;
+        &lt;di:waypoint x=&quot;250&quot; y=&quot;99&quot; /&gt;
+      &lt;/bpmndi:BPMNEdge&gt;
+      &lt;bpmndi:BPMNShape id=&quot;Event_b5nUGzK_di&quot; bpmnElement=&quot;Event_b5nUGzK&quot;&gt;
+        &lt;dc:Bounds x=&quot;156&quot; y=&quot;81&quot; width=&quot;36&quot; height=&quot;36&quot; /&gt;
+        &lt;bpmndi:BPMNLabel&gt;
+          &lt;dc:Bounds x=&quot;163&quot; y=&quot;124&quot; width=&quot;22&quot; height=&quot;14&quot; /&gt;
+        &lt;/bpmndi:BPMNLabel&gt;
+      &lt;/bpmndi:BPMNShape&gt;
+      &lt;bpmndi:BPMNShape id=&quot;Activity_HQQl6Ft_di&quot; bpmnElement=&quot;Activity_HQQl6Ft&quot;&gt;
+        &lt;dc:Bounds x=&quot;250&quot; y=&quot;59&quot; width=&quot;100&quot; height=&quot;80&quot; /&gt;
+        &lt;bpmndi:BPMNLabel /&gt;
+      &lt;/bpmndi:BPMNShape&gt;
+    &lt;/bpmndi:BPMNPlane&gt;
+  &lt;/bpmndi:BPMNDiagram&gt;
+&lt;/bpmn:definitions&gt;" prefix="flowable" style="height:500px;"></BpmnModeler></p><details class="code-details" data-v-475dbe02><summary data-v-475dbe02>View source</summary><!--[--><div class="language-vue"><pre><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>component</span>
+    <span class="token attr-name">is</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>BpmnModeler<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>formData<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name"><span class="token namespace">v-model:</span>xml</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>xml<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">:form-options</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>options<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">prefix</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>flowable<span class="token punctuation">&quot;</span></span>
+    <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 500px</span><span class="token punctuation">&quot;</span></span></span>
+  <span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">#bpmn-tools</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>primary<span class="token punctuation">&quot;</span></span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>default<span class="token punctuation">&quot;</span></span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>updateCategory<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        更新流程分类(更新后需手动点击一次图形)
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-button</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>component</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- &lt;BpmnModeler v-model=&quot;formData&quot; v-model:xml=&quot;xml&quot; :form-options=&quot;options&quot; prefix=&quot;flowable&quot; style=&quot;height: 500px&quot;&gt;
+    &lt;template #bpmn-tools&gt;
+      &lt;el-button type=&quot;primary&quot; size=&quot;default&quot; @click=&quot;updateCategory&quot;&gt;
+        更新流程分类(更新后需手动点击一次图形)
+      &lt;/el-button&gt;
+    &lt;/template&gt;
+  &lt;/BpmnModeler&gt; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">setup</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>ts<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ref <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> defaultXml <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;avue-bpmn/defaults/xml&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> useOptions <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;avue-bpmn/composables/options&quot;</span><span class="token punctuation">;</span>
+<span class="token comment">// import { BpmnModeler, defaultXml, useOptions } from &quot;avue-bpmn&quot;;</span>
+<span class="token comment">// import &quot;avue-bpmn/styles/bpmn-modeler.scss&quot;;</span>
+
+<span class="token keyword">const</span> formData <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> xml <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token function">defaultXml</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> options<span class="token punctuation">,</span> update <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;serialColumn.value&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> <span class="token literal-property property">dateFormat</span><span class="token operator">:</span> <span class="token string">&quot;yyyyMMdd&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">suffixLength</span><span class="token operator">:</span> <span class="token string">&quot;4&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">startSequence</span><span class="token operator">:</span> <span class="token string">&quot;0&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">connector</span><span class="token operator">:</span> <span class="token string">&quot;-&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">cycle</span><span class="token operator">:</span> <span class="token string">&quot;none&quot;</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">updateCategory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;processCategoryColumn.type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;select&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;processCategoryColumn.dicData&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">&quot;财务管理&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">&quot;0&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">&quot;人事管理&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">&quot;1&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">&quot;考勤管理&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">&quot;2&quot;</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><!--]--></details><h2 id="custom-options" tabindex="-1">Custom Options <a class="header-anchor" href="#custom-options" aria-hidden="true">#</a></h2><p><BpmnModeler prefix="flowable" style="height:400px;"></BpmnModeler></p><details class="code-details" data-v-475dbe02><summary data-v-475dbe02>View source</summary><!--[--><div class="language-vue"><pre><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>component</span>
+    <span class="token attr-name">is</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>BpmnModeler<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>formData<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">:form-options</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>options<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">:init-options</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>initOptions<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">prefix</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>flowable<span class="token punctuation">&quot;</span></span>
+    <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 400px</span><span class="token punctuation">&quot;</span></span></span>
+  <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>component</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- &lt;BpmnModeler
+    v-model=&quot;formData&quot;
+    :form-options=&quot;options&quot;
+    :init-options=&quot;initOptions&quot;
+    prefix=&quot;flowable&quot;
+    style=&quot;height: 400px&quot;
+  &gt;&lt;/BpmnModeler&gt; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">setup</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>ts<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ref <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> processIdColumn<span class="token punctuation">,</span> processNameColumn<span class="token punctuation">,</span> baseColumns <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;avue-bpmn/defaults/options&quot;</span><span class="token punctuation">;</span>
+<span class="token comment">// import { BpmnModeler, processIdColumn, processNameColumn, baseColumns } from &quot;avue-bpmn&quot;;</span>
+<span class="token comment">// import &quot;avue-bpmn/es/styles/bpmn-modeler.scss&quot;;</span>
+
+<span class="token keyword">const</span> formData <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> initOptions <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">simulation</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token literal-property property">minimap</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;bpmn:Process&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">&quot;流程配置&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">prop</span><span class="token operator">:</span> <span class="token string">&quot;base&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">column</span><span class="token operator">:</span> <span class="token punctuation">[</span>processIdColumn<span class="token punctuation">,</span> processNameColumn<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">&quot;自定义属性&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">prop</span><span class="token operator">:</span> <span class="token string">&quot;custom&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;bpmn:StartEvent&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">&quot;节点配置&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">prop</span><span class="token operator">:</span> <span class="token string">&quot;base&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">column</span><span class="token operator">:</span> baseColumns <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><!--]--></details><h2 id="props" tabindex="-1">Props <a class="header-anchor" href="#props" aria-hidden="true">#</a></h2><table><thead><tr><th>属性</th><th>说明</th><th>类型</th><th>可选值</th><th>默认值</th></tr></thead><tbody><tr><td>v-model</td><td>表单绑定值</td><td>Object</td><td>-</td><td>-</td></tr><tr><td>v-model:xml(Vue3) <br> xml.sync(Vue2)</td><td>导入的 xml 字符串,不传或传空创建新图形,修改属性值自动更新</td><td>string</td><td>-</td><td>-</td></tr><tr><td>v-model:modeler(Vue3) <br> modeler.sync(Vue2)</td><td>初始化实例</td><td>Modeler</td><td>-</td><td>-</td></tr><tr><td>v-model:element(Vue3) <br> element.sync(Vue2)</td><td>每次点击图形更新</td><td>Base</td><td>-</td><td>-</td></tr><tr><td>prefix</td><td>前缀</td><td>string</td><td>&quot;activiti&quot;, &quot;camunda&quot;, &quot;flowable&quot;, &quot;bpmn&quot;</td><td>&quot;bpmn&quot;</td></tr><tr><td>size</td><td>参照 element-plus(Vue3) 或 element-ui(Vue2) 的组件大小</td><td>string</td><td></td><td>&quot;default&quot;(Vue3),&quot;small&quot;(Vue2)</td></tr><tr><td>formWidth</td><td>表单宽度</td><td>string</td><td>-</td><td>&quot;30%&quot;</td></tr><tr><td>formOptions</td><td>表单配置</td><td>BpmnFormOptions</td><td>-</td><td></td></tr><tr><td>initOptions</td><td>初始化配置</td><td>ViewerOptions</td><td>-</td><td></td></tr></tbody></table><h2 id="slot" tabindex="-1">Slot <a class="header-anchor" href="#slot" aria-hidden="true">#</a></h2><table><thead><tr><th>插槽名</th><th>说明</th></tr></thead><tbody><tr><td>bpmn-tools</td><td>自定义顶部工具栏,插入到默认工具栏项之后</td></tr><tr><td>表单项 prop</td><td>自定义表单项,参照<a href="https://avuejs.com/" target="_blank" rel="noopener noreferrer">avue</a>的表单自定义</td></tr></tbody></table><h2 id="type-definition" tabindex="-1">Type Definition <a class="header-anchor" href="#type-definition" aria-hidden="true">#</a></h2><div class="language-ts"><div class="highlight-lines"><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre><code><span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">BpmnFormOption</span> <span class="token operator">=</span> Omit<span class="token operator">&lt;</span>FormOption<span class="token punctuation">,</span> <span class="token string">&quot;column&quot;</span> <span class="token operator">|</span> <span class="token string">&quot;group&quot;</span><span class="token operator">&gt;</span> <span class="token operator">&amp;</span> <span class="token punctuation">{</span>
+  column<span class="token operator">:</span> BpmnFormColumnItem<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  group<span class="token operator">:</span> BpmnFormGroupItem<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">BpmnFormData</span> <span class="token operator">=</span> Partial<span class="token operator">&lt;</span><span class="token keyword">typeof</span> defaultFormData<span class="token operator">&gt;</span> <span class="token operator">&amp;</span> Record<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">any</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">BpmnFormColumnItem</span> <span class="token keyword">extends</span> <span class="token class-name">FormColumn</span> <span class="token punctuation">{</span>
+  updateFormData<span class="token operator">?</span><span class="token punctuation">(</span>state<span class="token operator">:</span> ModelerState <span class="token operator">&amp;</span> <span class="token punctuation">{</span> businessObject<span class="token operator">:</span> BpmnBaseElement<span class="token punctuation">;</span> $attrs<span class="token operator">:</span> Record<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">any</span><span class="token operator">&gt;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+  updateProperties<span class="token operator">?</span><span class="token punctuation">(</span>state<span class="token operator">:</span> ModelerState <span class="token operator">&amp;</span> <span class="token punctuation">{</span> businessObject<span class="token operator">:</span> BpmnBaseElement<span class="token punctuation">;</span> $attrs<span class="token operator">:</span> Record<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">any</span><span class="token operator">&gt;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">BpmnFormGroupItem</span> <span class="token keyword">extends</span> <span class="token class-name">FormGroup</span> <span class="token punctuation">{</span>
+  column<span class="token operator">?</span><span class="token operator">:</span> BpmnFormColumnItem<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">BpmnFormOptions</span> <span class="token operator">=</span> Record<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> BpmnFormGroupItem<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span><span class="token punctuation">;</span></code></pre></div></div></div><footer class="page-footer" data-v-7eddb2c4 data-v-07c132fc><div class="edit" data-v-07c132fc><div class="edit-link" data-v-07c132fc data-v-1ed99556><!----></div></div><div class="updated" data-v-07c132fc><!----></div></footer><div class="next-and-prev-link" data-v-7eddb2c4 data-v-38ede35f><div class="container" data-v-38ede35f><div class="prev" data-v-38ede35f><!----></div><div class="next" data-v-38ede35f><a class="link" href="/avue-bpmn/components/bpmn-viewer/demo/" data-v-38ede35f><span class="text" data-v-38ede35f>BpmnViewer</span><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="icon icon-next" data-v-38ede35f><path d="M19.9,12.4c0.1-0.2,0.1-0.5,0-0.8c-0.1-0.1-0.1-0.2-0.2-0.3l-7-7c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l5.3,5.3H5c-0.6,0-1,0.4-1,1s0.4,1,1,1h11.6l-5.3,5.3c-0.4,0.4-0.4,1,0,1.4c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l7-7C19.8,12.6,19.9,12.5,19.9,12.4z"></path></svg></a></div></div></div><!--[--><!--]--></div></main></div><!----><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"components_bpmn-modeler_demo_index.md\":\"98c7c649\",\"components_bpmn-viewer_demo_index.md\":\"c16abde6\",\"guide_changelog.md\":\"006698bd\",\"guide_start.md\":\"027b5e9e\",\"index.md\":\"bea60f1e\"}")</script>
+    <script type="module" async src="/avue-bpmn/assets/app.52899705.js"></script>
+    
+  </body>
+</html>

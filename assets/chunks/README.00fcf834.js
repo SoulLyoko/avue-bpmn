@@ -1,0 +1,27 @@
+import{_ as n,o as a,h as s,k as t}from"../app.52899705.js";const g='{"title":"Install","description":"","frontmatter":{},"headers":[{"level":2,"title":"Install","slug":"install"},{"level":2,"title":"Usage","slug":"usage"},{"level":3,"title":"Full Import","slug":"full-import"},{"level":3,"title":"Manually import","slug":"manually-import"},{"level":3,"title":"Volar Support","slug":"volar-support"}],"relativePath":"../README.md"}',p={},o=t(`<div align="center"><h3>AvueBpmn</h3><span>Configurable bpmnjs vue components</span><br><a href="https://soullyoko.github.io/avue-bpmn/">Docs</a></div><h2 id="install" tabindex="-1">Install <a class="header-anchor" href="#install" aria-hidden="true">#</a></h2><div class="language-bash"><pre><code><span class="token function">npm</span> i avue-bpmn
+<span class="token comment"># or</span>
+<span class="token function">yarn</span> <span class="token function">add</span> avue-bpmn
+</code></pre></div><h2 id="usage" tabindex="-1">Usage <a class="header-anchor" href="#usage" aria-hidden="true">#</a></h2><h3 id="full-import" tabindex="-1">Full Import <a class="header-anchor" href="#full-import" aria-hidden="true">#</a></h3><div class="language-ts"><pre><code><span class="token keyword">import</span> <span class="token punctuation">{</span> createApp <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">&quot;./App.vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> AvueBpmn <span class="token keyword">from</span> <span class="token string">&quot;avue-bpmn&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">&quot;avue-bpmn/dist/index.css&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">createApp</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>AvueBpmn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">&quot;#app&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="manually-import" tabindex="-1">Manually import <a class="header-anchor" href="#manually-import" aria-hidden="true">#</a></h3><div class="language-html"><pre><code><span class="token comment">&lt;!-- App.vue --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>BpmnModeler</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>BpmnModeler</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">setup</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token keyword">import</span> <span class="token punctuation">{</span> BpmnModeler <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;avue-bpmn&quot;</span><span class="token punctuation">;</span>
+  <span class="token keyword">import</span> <span class="token string">&quot;avue-bpmn/es/styles/bpmn-modeler.css&quot;</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h3 id="volar-support" tabindex="-1">Volar Support <a class="header-anchor" href="#volar-support" aria-hidden="true">#</a></h3><p>Add the global component type definition for <code>Volar</code></p><div class="language-json"><pre><code><span class="token comment">// tsconfig.json</span>
+<span class="token punctuation">{</span>
+  <span class="token property">&quot;compilerOptions&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token property">&quot;types&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;avue-bpmn/global&quot;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div>`,11),e=[o];function c(l,u,i,r,k,d){return a(),s("div",null,e)}var h=n(p,[["render",c]]);export{g as __pageData,h as default};
