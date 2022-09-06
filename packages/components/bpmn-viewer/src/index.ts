@@ -15,15 +15,16 @@ export type ViewerEmits = typeof ViewerEmits;
 export type ViewerEmitFn = EmitFn<ViewerEmits>;
 export type ViewerInstance = InstanceType<typeof BpmnViewer>;
 
+// #region ViewerData
 export interface ViewerData {
   elementId?: string;
   colors?: Colors;
-  tooltips?: Tootips;
+  tooltips?: {
+    html?: string;
+    position?: { offsetX?: number; offsetY?: number };
+  };
 }
-interface Tootips {
-  html?: string;
-  position?: { offsetX?: number; offsetY?: number };
-}
+// #endregion ViewerData
 
 export const ViewerProps = {
   xml: { type: String },

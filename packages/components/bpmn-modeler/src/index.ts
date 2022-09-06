@@ -2,7 +2,7 @@ import type { PropType } from "vue-demi";
 import type Modeler from "bpmn-js/lib/Modeler";
 import type { Base, ViewerOptions } from "diagram-js/lib/model";
 import type { AvueFormInstance } from "@smallwei/avue";
-import type { PropTypes, EmitFn, BpmnFormGroupItem } from "~/types";
+import type { PropTypes, EmitFn, BpmnFormOptions } from "~/types";
 
 import { defineComponent, onMounted, provide, isVue2 } from "vue-demi";
 import { uniqueId } from "lodash-unified";
@@ -24,7 +24,7 @@ export const modelerProps = {
   prefix: { type: String as PropType<"activiti" | "camunda" | "flowable" | "bpmn">, default: "bpmn" },
   size: { type: String, default: isVue2 ? "small" : "default" },
   formWidth: { type: String, default: "30%" },
-  formOptions: { type: Object as PropType<Record<string, BpmnFormGroupItem[]>>, default: () => ({}) },
+  formOptions: { type: Object as PropType<BpmnFormOptions>, default: () => ({}) },
   initOptions: {
     type: Object as PropType<
       ViewerOptions & {
@@ -60,7 +60,11 @@ export const BpmnModeler = defineComponent({
       useInitModeler({ props, state, emit, bpmnCanvasId });
       useModelerListener({ state, emit });
       useUpdateColumn(state);
-      props.xml && importXML(props.xml);
+      if (props.xml) {
+        importXML(props.xml);
+      } else {
+        modeler.value?.createDiagram();
+      }
     });
 
     const AvueForm = dynamicComponent("avue-form");

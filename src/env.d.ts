@@ -15,3 +15,9 @@ declare module "*.bpmnlintrc" {
   const rc: any;
   export default rc;
 }
+
+declare module "rollup-plugin-bpmnlint" {
+  import { Plugin } from "rollup";
+  const bpmnlint: () => Plugin;
+  export default bpmnlint;
+}

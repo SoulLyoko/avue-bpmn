@@ -451,7 +451,7 @@ declare module "bpmn-js/lib/Modeler" {
     /**
      * Create a new diagram to start modeling.
      */
-    createDiagram(done: DoneCallback): void;
+    createDiagram(done?: DoneCallback): void;
   }
 }
 
