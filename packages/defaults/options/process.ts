@@ -9,8 +9,8 @@ export const processDocumentationColumn: BpmnFormColumnItem = { ...documentation
 export const processCategoryColumn: BpmnFormColumnItem = {
   label: "流程分类",
   prop: "category",
-  updateFormData({ formData, businessObject }) {
-    const { category } = businessObject;
+  updateFormData({ formData, $attrs }) {
+    const { category } = $attrs;
     formData.value.category = category || "";
   },
   updateProperties({ formData, element, modeling }) {
