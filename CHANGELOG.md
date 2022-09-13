@@ -1,3 +1,12 @@
+## [0.3.6](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.5...v0.3.6) (2022-09-13)
+
+
+### Bug Fixes
+
+* processCategoryColumn-updateFormData ([9639b66](https://github.com/SoulLyoko/avue-bpmn/commit/9639b66dae50aa83e32d9cba91caebcce946f6d4))
+
+
+
 ## [0.3.5](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.4...v0.3.5) (2022-09-06)
 
 
