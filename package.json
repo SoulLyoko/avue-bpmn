@@ -1,6 +1,6 @@
 {
   "name": "avue-bpmn",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "upperName": "AvueBpmn",
   "description": "Configurable bpmnjs vue components",
   "author": "SoulLyoko <519052532@qq.com>",

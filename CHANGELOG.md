@@ -1,3 +1,12 @@
+## [0.3.7](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.6...v0.3.7) (2022-09-13)
+
+
+### Bug Fixes
+
+* **defaults:** executionListener using error name ([dd569e1](https://github.com/SoulLyoko/avue-bpmn/commit/dd569e1954f4bd5b5793a2977fc9ceb1fdd2c0db))
+
+
+
 ## [0.3.6](https://github.com/SoulLyoko/avue-bpmn/compare/v0.3.5...v0.3.6) (2022-09-13)
 
 
