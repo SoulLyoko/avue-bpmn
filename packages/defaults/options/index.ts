@@ -44,7 +44,8 @@ export const defaultOptions: BpmnFormOptions = {
   "bpmn:EndEvent": [
     { label: "基本配置", prop: "base", column: baseColumns },
     { label: "表单配置", prop: "formproperty", collapse: false, column: [formpropertyColumn] },
-    { label: "扩展属性", prop: "property", collapse: false, column: [propertyColumn] }
+    { label: "扩展属性", prop: "property", collapse: false, column: [propertyColumn] },
+    { label: "执行监听", prop: "executionListener", collapse: false, column: [executionListenerColumn] }
   ],
   "bpmn:Process": [
     { label: "流程配置", prop: "base", column: processColumns },
